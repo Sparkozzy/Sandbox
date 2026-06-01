@@ -627,6 +627,10 @@
       .heading-lg { font-size: clamp(21px, 5.4vw, 26px); text-wrap: balance; }
       .problem-hero-number .big-number { font-size: clamp(46px, 13vw, 64px); }
 
+      /* Linha de stats (5% / 24/7 / LGPD): aproxima e reduz para caber com respiro nas laterais */
+      [style*="display:flex;gap:48px;justify-content:center"] { gap: 16px !important; }
+      [style*="display:flex;gap:48px;justify-content:center"] p[style*="font-size:36px"] { font-size: 26px !important; }
+
       /* Cada slide preenche exatamente a tela visível — resolve o "vazamento"
          do próximo slide causado pelo 100vh + barra do navegador no celular */
       .slide { min-height: 100dvh; padding: 70px 18px 104px; }
