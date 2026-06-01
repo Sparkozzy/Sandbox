@@ -1685,10 +1685,6 @@
       }
       el.classList.toggle('open', willOpen);
       wrap.style.maxHeight = willOpen ? wrap.scrollHeight + 'px' : '0';
-      if (willOpen && mobile) {
-        // acompanha e centraliza o item clicado após a animação de abertura
-        setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 380);
-      }
     }
   </script>
 </body>
