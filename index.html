@@ -649,8 +649,30 @@
       .hero-cta { gap: 12px; margin-top: 28px; }
       .hero-sub { margin-top: 16px; }
 
-      /* Navegação fixa um pouco mais acima */
-      .nav-controls { bottom: 18px; gap: 12px; }
+      /* Navegação inferior no mobile:
+         - arrows maiores e mais visíveis (fáceis de tocar)
+         - respiro de 18px nas laterais (não colam mais nas bordas)
+         - bolinhas viram só indicador (não clicáveis -> sem miss-click)
+         - contador escondido (as bolinhas já mostram o progresso) */
+      .nav-controls {
+        bottom: 20px;
+        left: 0; right: 0;
+        transform: none;
+        width: 100%;
+        padding: 0 18px;
+        gap: 10px;
+        box-sizing: border-box;
+      }
+      .nav-btn {
+        width: 50px; height: 50px;
+        color: rgba(255, 255, 255, 0.85);
+        border-color: rgba(123, 154, 255, 0.28);
+        background: rgba(8, 12, 24, 0.85);
+      }
+      #nav-dots { flex: 1; justify-content: center; overflow: hidden; }
+      .nav-dot { pointer-events: none; width: 6px; height: 6px; }
+      .nav-dot.active { width: 16px; }
+      .slide-counter { display: none; }
 
       /* Card de contato equilibrado quando empilha em coluna única */
       .contact-grid > div { padding-left: 24px !important; padding-right: 24px !important; }
