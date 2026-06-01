@@ -1,12 +1,10 @@
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Instala dependências primeiro (cache layer)
-COPY package.json ./
-RUN npm install --omit=dev
+COPY package*.json ./
+RUN npm install
 
-# Copia o restante dos arquivos
 COPY . .
 
 EXPOSE 3000

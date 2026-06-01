@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindFlow — Hub Interno</title>
+  <title>MindFlow — Apresentação Institucional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet">
+
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #04060E;
+      color: #fff;
+      overflow-x: hidden;
     }
 
+    /* ── CSS CUSTOM PROPERTIES ── */
     :root {
       --blue: #2E4FFF;
       --teal: #00B5A0;
       --blue2: #7B9AFF;
       --bg: #04060E;
       --muted: #8E8FA2;
+      --surface: rgba(8, 12, 24, 0.72);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-card: rgba(255, 255, 255, 0.08);
       --motion-open-dur: 480ms;
       --motion-close-dur: 380ms;
       --motion-open-ease: cubic-bezier(0.32, 0.72, 0, 1);
@@ -37,6 +42,7 @@
       inherits: false;
     }
 
+    /* ── NEURAL CANVAS ── */
     #neural-canvas {
       position: fixed;
       inset: 0;
@@ -46,430 +52,11 @@
       pointer-events: none;
     }
 
-    /* ── V13 logo keyframes ── */
-    @keyframes v13-trace-fwd {
-
-      0%,
-      1.9% {
-        stroke-dashoffset: 1000;
-        stroke-opacity: 0;
-      }
-
-      2% {
-        stroke-dashoffset: 1000;
-        stroke-opacity: 1;
-      }
-
-      25% {
-        stroke-dashoffset: 500;
-        stroke-opacity: 1;
-      }
-
-      29% {
-        stroke-dashoffset: 500;
-        stroke-opacity: 0.4;
-      }
-
-      33%,
-      100% {
-        stroke-dashoffset: 500;
-        stroke-opacity: 0;
-      }
-    }
-
-    @keyframes v13-glow-fwd {
-
-      0%,
-      1.9% {
-        stroke-dashoffset: 1000;
-        stroke-opacity: 0;
-      }
-
-      2% {
-        stroke-dashoffset: 1000;
-        stroke-opacity: 0.8;
-      }
-
-      25% {
-        stroke-dashoffset: 500;
-        stroke-opacity: 0.8;
-      }
-
-      28%,
-      100% {
-        stroke-dashoffset: 500;
-        stroke-opacity: 0;
-      }
-    }
-
-    @keyframes v13-trace-rev {
-
-      0%,
-      1.9% {
-        stroke-dasharray: 0 1000 0;
-        stroke-opacity: 0;
-      }
-
-      2% {
-        stroke-dasharray: 0 1000 0;
-        stroke-opacity: 1;
-      }
-
-      25% {
-        stroke-dasharray: 0 500 500;
-        stroke-opacity: 1;
-      }
-
-      29% {
-        stroke-dasharray: 0 500 500;
-        stroke-opacity: 0.4;
-      }
-
-      33%,
-      100% {
-        stroke-dasharray: 0 500 500;
-        stroke-opacity: 0;
-      }
-    }
-
-    @keyframes v13-glow-rev {
-
-      0%,
-      1.9% {
-        stroke-dasharray: 0 1000 0;
-        stroke-opacity: 0;
-      }
-
-      2% {
-        stroke-dasharray: 0 1000 0;
-        stroke-opacity: 0.8;
-      }
-
-      25% {
-        stroke-dasharray: 0 500 500;
-        stroke-opacity: 0.8;
-      }
-
-      28%,
-      100% {
-        stroke-dasharray: 0 500 500;
-        stroke-opacity: 0;
-      }
-    }
-
-    @keyframes v13-charge {
-
-      0%,
-      2% {
-        opacity: 0;
-      }
-
-      25% {
-        opacity: 0.07;
-      }
-
-      26%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-flash {
-
-      0%,
-      24% {
-        opacity: 0;
-        filter: none;
-      }
-
-      25.5% {
-        opacity: 1;
-        filter: brightness(5) blur(5px);
-      }
-
-      26.9% {
-        opacity: 0.1;
-        filter: brightness(1) blur(1px);
-      }
-
-      28.4% {
-        opacity: 0.75;
-        filter: brightness(4) blur(4px);
-      }
-
-      29.8% {
-        opacity: 0.06;
-        filter: brightness(1) blur(0);
-      }
-
-      31.3% {
-        opacity: 0.45;
-        filter: brightness(3) blur(3px);
-      }
-
-      33%,
-      100% {
-        opacity: 0;
-        filter: none;
-      }
-    }
-
-    @keyframes v13-flash-bloom {
-
-      0%,
-      24% {
-        opacity: 0;
-      }
-
-      26% {
-        opacity: 0.7;
-      }
-
-      32% {
-        opacity: 0.35;
-      }
-
-      35%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-fill {
-
-      0%,
-      25% {
-        opacity: 0;
-        filter: brightness(1);
-      }
-
-      30% {
-        opacity: 1;
-        filter: brightness(2.8);
-      }
-
-      33% {
-        opacity: 1;
-        filter: brightness(1);
-      }
-
-      70% {
-        opacity: 1;
-        filter: brightness(1);
-      }
-
-      84% {
-        opacity: 0;
-        filter: brightness(1);
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-aura {
-
-      0%,
-      2% {
-        opacity: 0;
-      }
-
-      25% {
-        opacity: 0.04;
-      }
-
-      26% {
-        opacity: 0.75;
-      }
-
-      30% {
-        opacity: 0.22;
-      }
-
-      37.5% {
-        opacity: 0.28;
-      }
-
-      43.75% {
-        opacity: 0.16;
-      }
-
-      50% {
-        opacity: 0.26;
-      }
-
-      70% {
-        opacity: 0.18;
-      }
-
-      84%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-mid {
-
-      0%,
-      2% {
-        opacity: 0;
-      }
-
-      25% {
-        opacity: 0.06;
-      }
-
-      26% {
-        opacity: 0.9;
-      }
-
-      30% {
-        opacity: 0.4;
-      }
-
-      50% {
-        opacity: 0.47;
-      }
-
-      70% {
-        opacity: 0.32;
-      }
-
-      84%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-edge {
-
-      0%,
-      2% {
-        opacity: 0;
-      }
-
-      25% {
-        opacity: 0.09;
-      }
-
-      26% {
-        opacity: 1.0;
-      }
-
-      30% {
-        opacity: 0.55;
-      }
-
-      50% {
-        opacity: 0.62;
-      }
-
-      70% {
-        opacity: 0.45;
-      }
-
-      84%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes v13-exit {
-
-      0%,
-      75% {
-        opacity: 0;
-      }
-
-      77.5% {
-        opacity: 0.3;
-      }
-
-      84%,
-      100% {
-        opacity: 0;
-      }
-    }
-
-    .v13-trace-fwd {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: v13-trace-fwd 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .v13-glow-fwd {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: v13-glow-fwd 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .v13-trace-rev {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 0 1000 0;
-      animation: v13-trace-rev 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .v13-glow-rev {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 0 1000 0;
-      animation: v13-glow-rev 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    .v13-charge {
-      animation: v13-charge 8s ease-in-out infinite;
-    }
-
-    .v13-flash {
-      animation: v13-flash 8s ease-in-out infinite;
-    }
-
-    .v13-flash-bloom {
-      filter: blur(30px) brightness(3);
-      animation: v13-flash-bloom 8s ease-in-out infinite;
-    }
-
-    .v13-fill {
-      animation: v13-fill 8s ease-in-out infinite;
-    }
-
-    .v13-aura {
-      filter: blur(22px);
-      animation: v13-aura 8s ease-in-out infinite;
-    }
-
-    .v13-mid {
-      filter: blur(7px);
-      animation: v13-mid 8s ease-in-out infinite;
-    }
-
-    .v13-edge {
-      filter: blur(2.5px);
-      animation: v13-edge 8s ease-in-out infinite;
-    }
-
-    .v13-exit {
-      animation: v13-exit 8s ease-in-out infinite;
-    }
-
-    body {
-      background: var(--bg);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-    }
-
-    /* ========== Navbar ========== */
+    /* ── NAVBAR ── */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       height: 52px;
       display: flex;
       align-items: center;
@@ -479,7 +66,6 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-
     .nav-logo {
       display: flex;
       align-items: center;
@@ -487,111 +73,107 @@
       text-decoration: none;
       color: #fff;
     }
-
     .nav-logo .mark {
       width: 28px;
       height: 28px;
       flex-shrink: 0;
+      display: block;
     }
-
     .nav-logo .wordmark {
       height: 22px;
       opacity: 0.9;
+      display: block;
+    }
+    .nav-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
     }
 
-    /* ========== Main ========== */
-    main {
-      position: relative;
-      z-index: 1;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 76px 16px 24px;
-      width: 100%;
+    /* ── SLIDE SYSTEM ── */
+    .slide {
+      position: relative; z-index: 1;
+      min-height: 100vh; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 32px;
+    }
+    .slide-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px;
     }
 
-    /* ========== Card ========== */
+    /* ── GLASS CARD ── */
     .card {
-      width: 100%;
-      max-width: 440px;
-      padding: 44px 44px 40px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(8, 12, 24, 0.72), rgba(8, 12, 24, 0.72)) padding-box,
-        conic-gradient(from var(--ba),
-          rgba(46, 79, 255, 0) 0%,
-          rgba(46, 79, 255, .75) 15%,
-          rgba(0, 181, 160, .75) 38%,
-          rgba(46, 79, 255, .75) 62%,
-          rgba(0, 181, 160, .55) 80%,
-          rgba(46, 79, 255, 0) 100%) border-box;
+      background: linear-gradient(rgba(8, 12, 24, 0.72), rgba(8, 12, 24, 0.72)) padding-box,
+                  conic-gradient(from var(--ba), #2E4FFF 0%, #00B5A0 25%, #2E4FFF 50%, #00B5A0 75%, transparent 87.5%, #2E4FFF 100%) border-box;
       border: 1px solid transparent;
       backdrop-filter: blur(12px);
       border-radius: 16px;
+      padding: 44px;
       box-shadow: 0 32px 64px rgba(0, 0, 0, .55);
-      animation: spin-border 9s linear infinite, cardIn .65s cubic-bezier(.16, 1, .3, 1) both;
-    }
-
-    @keyframes spin-border {
-      to {
-        --ba: 360deg;
-      }
     }
 
     @keyframes cardIn {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin-border {
+      to { --ba: 360deg; }
+    }
+    @keyframes s-spin {
+      to { transform: rotate(360deg); }
+    }
+    .card.anim-border {
+      animation: cardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both, spin-border 9s linear infinite;
     }
 
-    .card-header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .card-header svg.logo-anim {
-      width: 160px;
-      height: auto;
-      margin-bottom: 20px;
-      display: block;
-      margin-inline: auto;
-    }
-
-    .card-title {
+    /* ── TYPOGRAPHY ── */
+    .display {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px;
-      font-weight: 600;
+      font-weight: 800;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .display-em {
+      background: linear-gradient(135deg, var(--blue2) 0%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .heading-xl {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.1;
       letter-spacing: -0.025em;
-      margin-bottom: 6px;
     }
-
-    .card-sub {
-      font-size: 14px;
-      color: var(--muted);
+    .heading-lg {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
-
-    /* ========== Form ========== */
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .heading-md {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(18px, 2vw, 28px);
+      line-height: 1.2;
     }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .body-lg {
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.8);
     }
-
-    .field-label {
+    .body-md {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+    }
+    .label {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 11px;
       font-weight: 500;
@@ -599,412 +181,1362 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-
-    .input-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .input-wrap .material-symbols-outlined {
-      position: absolute;
-      left: 14px;
-      font-size: 20px;
-      color: #444656;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .input-wrap input {
-      width: 100%;
-      height: 46px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, .1);
-      border-radius: 10px;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      padding: 0 14px 0 42px;
-      outline: none;
-      caret-color: rgba(255, 255, 255, 0.8);
-      transition: border-color .15s, box-shadow .15s;
-    }
-
-    .input-wrap input::placeholder {
-      color: #9BA0B0;
-    }
-
-    .input-wrap input:hover:not(:focus) {
-      border-color: rgba(46, 79, 255, .3);
-    }
-
-    .input-wrap input:focus {
-      border-color: rgba(46, 79, 255, .75);
-      box-shadow: 0 0 0 3px rgba(46, 79, 255, .14);
-    }
-
-    .input-wrap input.error {
-      border-color: #FF4D4D !important;
-      box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.2) !important;
-    }
-
-    .alert {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      background: rgba(255, 78, 106, 0.08);
-      border: 1px solid rgba(255, 78, 106, 0.15);
-      font-size: 12px;
-      font-weight: 500;
-      color: #ff4e6a;
-      letter-spacing: 0.02em;
-      animation: fadeInSubtle .3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .alert.show {
-      display: flex;
-    }
-
-    .alert .material-symbols-outlined {
-      font-size: 18px;
-    }
-
-    @keyframes fadeInSubtle {
-      from {
-        opacity: 0;
-        transform: translateY(-4px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ========== Button ========== */
-    .btn {
-      width: 100%;
-      height: 52px;
-      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
-      border: none;
-      border-radius: 10px;
-      color: #fff;
+    .label-accent {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
+      background: linear-gradient(135deg, var(--blue2), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 52px; padding: 0 32px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+      border: none; border-radius: 10px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
       cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { box-shadow: 0 0 28px rgba(46, 79, 255, 0.4); }
+    .btn-primary:active { transform: scale(0.985); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 52px; padding: 0 32px;
+      background: transparent;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--blue); box-shadow: 0 0 20px rgba(46,79,255,0.2); }
+
+    /* ── NAVIGATION CONTROLS ── */
+    .nav-controls {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 100;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .nav-btn {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(8, 12, 24, 0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-card);
+      border-radius: 50%;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 20px;
+    }
+    .nav-btn:hover { border-color: var(--blue); color: #fff; }
+    .nav-dots {
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 12px;
+    }
+    .nav-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .nav-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
+    .nav-dot:hover { background: rgba(255,255,255,0.3); }
+    .slide-counter {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+      min-width: 48px; text-align: center;
+    }
+
+    /* ── HERO / SLIDE 1 ── */
+    .hero-content { text-align: center; max-width: 900px; margin: 0 auto; }
+    .hero-logo-wrap {
+      display: flex; justify-content: center; margin-bottom: 40px;
       position: relative;
-      overflow: hidden;
+    }
+    .hero-tagline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(14px, 1.4vw, 20px);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: clamp(14px, 1.1vw, 18px);
+      color: rgba(255,255,255,0.45);
+      margin-top: 20px;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+    }
+    .hero-cta { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── PROBLEM SLIDE ── */
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+    .problem-highlight {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .problem-stat-card {
+      position: relative;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 8px;
-      transition: box-shadow .2s, transform .15s;
+      gap: 16px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
     }
-
-    .btn:hover {
-      box-shadow: 0 0 28px rgba(46, 79, 255, .4);
+    .problem-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      border-radius: 0 2px 2px 0;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-
-    .btn:active {
-      transform: scale(.985);
+    .problem-stat-card:nth-child(1)::before { background: var(--blue); }
+    .problem-stat-card:nth-child(2)::before { background: var(--teal); }
+    .problem-stat-card:nth-child(3)::before { background: #FF4D4D; }
+    .problem-stat-card:hover {
+      border-color: rgba(46,79,255,0.2);
+      background: rgba(46,79,255,0.04);
+      transform: translateX(4px);
     }
-
-    .btn:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-      box-shadow: none;
+    .problem-stat-card:hover::before { opacity: 1; }
+    .ps-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+      line-height: 1;
+      transition: all 0.3s;
     }
-
-    .btn .spinner {
-      display: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+    .ps-icon .material-symbols-outlined {
+      font-size: 20px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
     }
-
-    .btn.loading .btn-text {
-      display: none;
-    }
-
-    .btn.loading .material-symbols-outlined {
-      display: none;
-    }
-
-    .btn.loading .spinner {
-      display: block;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* ========== Footer ========== */
-    .footer {
-      text-align: center;
-      padding: 16px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.25);
+    .ps-icon.i1 { background: rgba(46,79,255,0.12); color: var(--blue2); }
+    .ps-icon.i2 { background: rgba(0,181,160,0.12); color: var(--teal); }
+    .ps-icon.i3 { background: rgba(255,77,77,0.12); color: #FF4D4D; }
+    .ps-value {
       font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: 0.05em;
+      font-weight: 700; font-size: 12px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .ps-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.45; }
+
+    .problem-hero-number {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 32px;
+      background: radial-gradient(ellipse at center, rgba(46,79,255,0.06) 0%, transparent 70%);
+      border: 1px solid rgba(46,79,255,0.1);
+      border-radius: 16px;
+    }
+    .problem-hero-number .big-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(56px, 8vw, 96px);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--blue2), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .problem-hero-number .big-label {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+      max-width: 260px;
+    }
+    .problem-hero-number .big-context {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 320px;
     }
 
-    /* ========== Responsive ========== */
+    /* ── WHY SLIDE ── */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .why-features { display: flex; flex-direction: column; gap: 14px; }
+    .why-feat {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    .why-feat:hover { border-color: rgba(46,79,255,0.3); background: rgba(46,79,255,0.05); }
+    .why-feat-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(46,79,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+    .why-feat h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+    .why-feat p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    .why-highlight-cards {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .why-stat-card {
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .why-stat-card.blue {
+      background: rgba(46,79,255,0.06);
+      border: 1px solid rgba(46,79,255,0.15);
+    }
+    .why-stat-card.blue:hover { border-color: rgba(46,79,255,0.35); }
+    .why-stat-card.teal {
+      background: rgba(0,181,160,0.06);
+      border: 1px solid rgba(0,181,160,0.15);
+    }
+    .why-stat-card.teal:hover { border-color: rgba(0,181,160,0.35); }
+
+    /* ── PHASES ── */
+    .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .phase {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .phase:hover { border-color: rgba(46,79,255,0.3); transform: translateY(-4px); }
+    .phase-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px; font-weight: 800;
+      background: linear-gradient(135deg, var(--blue2), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.4;
+      position: absolute; top: 16px; right: 20px;
+    }
+    .phase h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .phase p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .phase-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(46,79,255,0.15), rgba(0,181,160,0.15));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    /* ── DIFFS ── */
+    .diffs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .diff-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .diff-card:hover { border-color: rgba(46,79,255,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .diff-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      background: linear-gradient(135deg, rgba(46,79,255,0.12), rgba(0,181,160,0.12));
+    }
+    .diff-card h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; margin-bottom: 8px; }
+    .diff-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+    /* ── MODULES ── */
+    .modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+    .module { text-align: center;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .module:hover { border-color: rgba(0,181,160,0.3); }
+    .module::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      opacity: 0.6;
+    }
+    .module-highlight {
+      background: linear-gradient(135deg, rgba(46,79,255,0.06) 0%, rgba(0,181,160,0.06) 100%);
+      border: 1px solid rgba(46,79,255,0.2);
+      box-shadow: 0 0 40px rgba(46,79,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .module-highlight:hover { border-color: rgba(46,79,255,0.4) !important; box-shadow: 0 0 60px rgba(46,79,255,0.12); }
+    .module-highlight::before {
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      opacity: 1;
+      box-shadow: 0 0 12px rgba(46,79,255,0.3);
+    }
+    .module-highlight .module-tag { color: #fff; background: linear-gradient(135deg, var(--blue), var(--teal)); padding: 2px 10px; border-radius: 4px; display: inline-block; }
+    .module-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .module h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 12px; }
+    .module p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .module ul { list-style: none; margin-top: 16px; }
+    .module ul li { font-size: 13px; color: rgba(255,255,255,0.5); padding: 6px 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .module ul li::before { content: '—'; color: var(--blue2); }
+
+    /* ── DASHBOARD ── */
+    .dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+    .dash-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-card); border-radius: 14px; padding: 24px; text-align: center; }
+    .dash-value { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 3vw, 48px); font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .dash-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+    .dash-graph { margin-top: 24px; }
+    .dash-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border-subtle); }
+    .dash-row:last-child { border-bottom: none; }
+    .dash-row-label { font-size: 14px; color: rgba(255,255,255,0.5); min-width: 140px; }
+    .dash-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .dash-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
+    .dash-row-value { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; min-width: 60px; text-align: right; }
+
+    /* ── USE CASES ── */
+    .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+    .case-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-card); border-radius: 16px; padding: 32px; transition: all 0.3s; }
+    .case-card:hover { border-color: rgba(46,79,255,0.3); }
+    .case-phase { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; background: linear-gradient(135deg, var(--blue2), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+    .case-card h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 12px; }
+    .case-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ── SECTORS ── */
+    .sectors { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 40px; }
+    .sector-pill { padding: 16px 32px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-card); border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.7); transition: all 0.3s; }
+    .sector-pill:hover { border-color: rgba(46,79,255,0.4); color: #fff; box-shadow: 0 0 16px rgba(46,79,255,0.06); }
+
+    /* ── INDICATORS ── */
+    .indicators-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 32px; }
+    .indicator { background: rgba(255,255,255,0.02); border: 1px solid var(--border-card); border-radius: 16px; padding: 32px; display: flex; align-items: center; gap: 24px; transition: all 0.3s; }
+    .indicator:hover { border-color: rgba(46,79,255,0.4); box-shadow: 0 0 16px rgba(46,79,255,0.06); }
+    .indicator-num { font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 4vw, 64px); font-weight: 800; line-height: 1; flex-shrink: 0; background: linear-gradient(135deg, var(--blue2), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .indicator-text h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; margin-bottom: 4px; }
+    .indicator-text p { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; gap: 0; margin-top: 40px; position: relative; }
+    .timeline::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--blue), var(--teal), var(--blue2), var(--blue)); background-size: 300% 100%; opacity: 0.4; animation: tl-line 4s ease-in-out infinite; }
+    @keyframes tl-line { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .tl-step { flex: 1; text-align: center; position: relative; padding-top: 56px; }
+    .tl-step::before { content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--blue); z-index: 2; }
+    .tl-step.active::before { background: var(--blue); box-shadow: 0 0 16px rgba(46,79,255,0.4); }
+    .tl-week { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; color: var(--teal); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 8px; }
+    .tl-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+    .tl-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .faq-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-card); border-radius: 12px; padding: 0; transition: border-color 0.3s; cursor: pointer; }
+    .faq-item:hover { border-color: rgba(46,79,255,0.2); }
+    .faq-item.open { border-color: rgba(46,79,255,0.25); }
+    .faq-q { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 12px; padding: 20px 24px; user-select: none; }
+    .faq-q .material-symbols-outlined { color: var(--teal); font-size: 20px; transition: transform 0.3s; }
+    .faq-item.open .faq-q .material-symbols-outlined { transform: rotate(45deg); color: var(--blue2); }
+    .faq-a-wrap { overflow: hidden; max-height: 0; transition: max-height 0.35s cubic-bezier(0.32, 0.72, 0, 1); }
+    .faq-a { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; padding: 0 24px 20px 56px; }
+
+    /* ── CTA ── */
+    .cta-content { text-align: center; max-width: 700px; margin: 0 auto; }
+    .cta-phone { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--teal); margin-top: 24px; }
+    .cta-contact { margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.5); }
+
+    .slide-footer { margin-top: 40px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.15); font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.05em; }
+
+    /* ── RESPONSIVE ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 260px;
+    }
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr !important; }
+      .problem-layout,
+      .why-grid { grid-template-columns: 1fr; }
+      .phases,
+      .diffs-grid,
+      .modules-grid,
+      .indicators-grid { grid-template-columns: 1fr; }
+      .dash-grid { grid-template-columns: repeat(2, 1fr); }
+      .cases-grid { grid-template-columns: 1fr; }
+      .timeline { flex-direction: column; gap: 24px; }
+      .timeline::before { display: none; }
+      .tl-step { padding-top: 0; }
+      .tl-step::before { display: none; }
+      .slide { padding: 80px 20px 120px; }
+      .card { padding: 24px; }
+      .navbar { padding: 0 16px; }
+    }
     @media (max-width: 600px) {
-      .card {
-        padding: 32px 16px 28px;
-        max-width: calc(100vw - 32px);
-      }
-
-      .card-title {
-        font-size: 24px;
-      }
-
-      .card-header svg.logo-anim {
-        width: 120px;
-      }
-
-      .navbar {
-        padding: 0 16px;
-      }
+      .dash-grid { grid-template-columns: 1fr 1fr; }
+      .sector-pill { padding: 10px 20px; font-size: 13px; }
     }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      #neural-canvas, .navbar, .nav-controls { display: none !important; }
+      .slide { min-height: auto; padding: 40px; page-break-after: always; }
+      .card { backdrop-filter: none; background: rgba(8,12,24,0.95); }
+      .problem-stat-card:hover { transform: none; }
+      body {
+        background: #04060E !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .slide:last-child { page-break-after: auto; }
+    }
+
+    /* ── UTILITY ── */
+    .text-center { text-align: center; }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-24 { margin-bottom: 24px; }
+    .mb-32 { margin-bottom: 32px; }
+    .mt-32 { margin-top: 32px; }
+    .slide-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      margin: 24px 0;
+      border-radius: 1px;
+    }
+    .slide-divider.center { margin: 24px auto; }
+
+    /* ── V13 LOGO KEYFRAMES (production) ── */
+    @keyframes v13-trace-fwd {
+      0%, 1.9% { stroke-dashoffset: 1000; stroke-opacity: 0; }
+      2% { stroke-dashoffset: 1000; stroke-opacity: 1; }
+      25% { stroke-dashoffset: 500; stroke-opacity: 1; }
+      29% { stroke-dashoffset: 500; stroke-opacity: 0.4; }
+      33% { stroke-dashoffset: 500; stroke-opacity: 0; }
+      100% { stroke-dashoffset: 500; stroke-opacity: 0; }
+    }
+    @keyframes v13-glow-fwd {
+      0%, 1.9% { stroke-dashoffset: 1000; stroke-opacity: 0; }
+      2% { stroke-dashoffset: 1000; stroke-opacity: 0.8; }
+      25% { stroke-dashoffset: 500; stroke-opacity: 0.8; }
+      28% { stroke-dashoffset: 500; stroke-opacity: 0; }
+      100% { stroke-dashoffset: 500; stroke-opacity: 0; }
+    }
+    @keyframes v13-trace-rev {
+      0%, 1.9% { stroke-dasharray: 0 1000 0; stroke-opacity: 0; }
+      2% { stroke-dasharray: 0 1000 0; stroke-opacity: 1; }
+      25% { stroke-dasharray: 0 500 500; stroke-opacity: 1; }
+      29% { stroke-dasharray: 0 500 500; stroke-opacity: 0.4; }
+      33% { stroke-dasharray: 0 500 500; stroke-opacity: 0; }
+      100% { stroke-dasharray: 0 500 500; stroke-opacity: 0; }
+    }
+    @keyframes v13-glow-rev {
+      0%, 1.9% { stroke-dasharray: 0 1000 0; stroke-opacity: 0; }
+      2% { stroke-dasharray: 0 1000 0; stroke-opacity: 0.8; }
+      25% { stroke-dasharray: 0 500 500; stroke-opacity: 0.8; }
+      28% { stroke-dasharray: 0 500 500; stroke-opacity: 0; }
+      100% { stroke-dasharray: 0 500 500; stroke-opacity: 0; }
+    }
+    @keyframes v13-charge {
+      0%, 2% { opacity: 0; } 25% { opacity: 0.07; } 26% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes v13-flash {
+      0%, 24% { opacity: 0; filter: none; }
+      25.5% { opacity: 1; filter: brightness(5) blur(5px); }
+      26.9% { opacity: 0.1; filter: brightness(1) blur(1px); }
+      28.4% { opacity: 0.75; filter: brightness(4) blur(4px); }
+      29.8% { opacity: 0.06; filter: brightness(1) blur(0); }
+      31.3% { opacity: 0.45; filter: brightness(3) blur(3px); }
+      33% { opacity: 0; filter: none; } 100% { opacity: 0; filter: none; }
+    }
+    @keyframes v13-flash-bloom {
+      0%, 24% { opacity: 0; } 26% { opacity: 0.7; } 32% { opacity: 0.35; } 35% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes v13-fill {
+      0%, 25% { opacity: 0; filter: brightness(1); }
+      30% { opacity: 1; filter: brightness(2.8); }
+      31.7% { opacity: 1; filter: brightness(1.6); }
+      33% { opacity: 1; filter: brightness(1); }
+      70% { opacity: 1; filter: brightness(1); }
+      84% { opacity: 0; filter: brightness(1); }
+      100% { opacity: 0; }
+    }
+    @keyframes v13-aura {
+      0%, 2% { opacity: 0; } 25% { opacity: 0.04; } 26% { opacity: 0.75; }
+      30% { opacity: 0.22; } 37.5% { opacity: 0.28; } 43.75% { opacity: 0.16; }
+      50% { opacity: 0.26; } 56.25% { opacity: 0.15; } 62.5% { opacity: 0.24; }
+      68.75% { opacity: 0.17; } 70% { opacity: 0.18; } 84% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes v13-mid {
+      0%, 2% { opacity: 0; } 25% { opacity: 0.06; } 26% { opacity: 0.9; }
+      30% { opacity: 0.4; } 37.5% { opacity: 0.5; } 43.75% { opacity: 0.30; }
+      50% { opacity: 0.47; } 56.25% { opacity: 0.28; } 62.5% { opacity: 0.44; }
+      68.75% { opacity: 0.29; } 70% { opacity: 0.32; } 84% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes v13-edge {
+      0%, 2% { opacity: 0; } 25% { opacity: 0.09; } 26% { opacity: 1.0; }
+      30% { opacity: 0.55; } 30.8% { opacity: 0.7; } 31.7% { opacity: 0.55; }
+      37.5% { opacity: 0.65; } 43.75% { opacity: 0.43; } 50% { opacity: 0.62; }
+      56.25% { opacity: 0.41; } 62.5% { opacity: 0.58; } 68.75% { opacity: 0.42; }
+      70% { opacity: 0.45; } 84% { opacity: 0; } 100% { opacity: 0; }
+    }
+    @keyframes v13-exit {
+      0%, 75% { opacity: 0; } 77.5% { opacity: 0.3; } 84% { opacity: 0; } 100% { opacity: 0; }
+    }
+
+    .v13-trace-fwd { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: v13-trace-fwd 8s cubic-bezier(0.4,0,0.2,1) infinite; }
+    .v13-glow-fwd { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: v13-glow-fwd 8s cubic-bezier(0.4,0,0.2,1) infinite; }
+    .v13-trace-rev { stroke-dasharray: 0 1000 0; stroke-dashoffset: 0; animation: v13-trace-rev 8s cubic-bezier(0.4,0,0.2,1) infinite; }
+    .v13-glow-rev { stroke-dasharray: 0 1000 0; stroke-dashoffset: 0; animation: v13-glow-rev 8s cubic-bezier(0.4,0,0.2,1) infinite; }
+    .v13-charge { animation: v13-charge 8s ease-in-out infinite; }
+    .v13-flash { animation: v13-flash 8s ease-in-out infinite; }
+    .v13-flash-bloom { filter: blur(30px) brightness(3); animation: v13-flash-bloom 8s ease-in-out infinite; }
+    .v13-fill { animation: v13-fill 8s ease-in-out infinite; }
+    .v13-aura { filter: blur(22px); animation: v13-aura 8s ease-in-out infinite; }
+    .v13-mid { filter: blur(7px); animation: v13-mid 8s ease-in-out infinite; }
+    .v13-edge { filter: blur(2.5px); animation: v13-edge 8s ease-in-out infinite; }
+    .v13-exit { animation: v13-exit 8s ease-in-out infinite; }
   </style>
 </head>
-
 <body>
 
+  <!-- ─── NEURAL CANVAS ─── -->
   <canvas id="neural-canvas"></canvas>
 
-  <!-- Navbar -->
+  <!-- ─── NAVBAR ─── -->
   <nav class="navbar">
-    <a class="nav-logo" href="/">
-      <svg class="mark" width="28" height="28" viewBox="1255 225 485 450" fill="none" xmlns="http://www.w3.org/2000/svg"
-        style="display:block;flex-shrink:0">
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
+    <a class="nav-logo" href="#slide-1">
+      <svg class="mark" width="28" height="28" viewBox="1255 225 485 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="white" transform="translate(0 -1604)" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z"/>
       </svg>
-      <svg class="wordmark" height="22" viewBox="530 745 1945 360" fill="none" xmlns="http://www.w3.org/2000/svg"
-        style="display:block;flex-shrink:0">
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1479.61 2368.25L1517.74 2368.25L1517.51 2687.85L1479.48 2687.89C1479.52 2678.56 1479.38 2672.65 1478.94 2663.35C1476.02 2658.69 1456.89 2675.85 1451.6 2678.72C1406.96 2702.97 1363.56 2697.62 1320.38 2667.34C1192.38 2557.43 1355.7 2366.92 1479.31 2485.3L1479.61 2368.25ZM1409.55 2656.67C1430.48 2653.41 1457.64 2642.26 1471.86 2613.07C1487.34 2581.3 1481.19 2539.66 1462.79 2516.65C1443.01 2491.9 1414.8 2481.8 1391.08 2485.73C1277.23 2502.82 1296.53 2664.41 1409.55 2656.67Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1945.14 2449.24C1982.13 2445.92 2019.48 2455.23 2050.21 2491.51C2099.37 2550.97 2081.5 2632.36 2033.13 2668.24C2012.12 2683.83 1999.15 2687.68 1976.32 2692.86C1935.29 2694.67 1898.43 2691.03 1863.2 2648.74C1828.03 2606.27 1827 2537.01 1862.85 2494.41C1889.41 2462.84 1913.93 2454.83 1945.14 2449.24ZM1874.49 2573.05C1885.2 2649 1930.75 2657.77 1968.13 2656.51C1981.97 2653.64 1991.4 2651.59 2004.13 2643.2C2055.51 2609.35 2049.08 2526.6 2000.07 2497.62C1981.5 2486.63 1969.43 2484.68 1949.73 2485.82C1915.94 2493.17 1884.01 2507.18 1874.49 2573.05Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M730.789 2495.2C755.41 2462.12 780.94 2449.08 811.813 2448.86C833.954 2448.71 863.277 2456.99 879.134 2486.8C884.658 2497.21 888.528 2510.04 890.347 2523.98C894.054 2551.21 892.549 2653.03 892.457 2687.4L853.587 2687.34C853.378 2650.23 857.517 2524.89 846.818 2510.14C810.708 2460.38 744.823 2484.77 739.735 2576.07L739.65 2687.57L700.73 2687.59C700.595 2649.75 705.869 2530.84 691.58 2505.44C669.808 2469.53 616.642 2485.38 598.393 2520.89C581.653 2553.46 586.828 2643.28 587.016 2687.87L548.265 2687.82L548.298 2454.53C559.842 2454.48 573.861 2452.16 584.977 2454.83C588.228 2459.91 587.568 2468.01 587.96 2477.32C593.241 2476.98 611.801 2461.92 620.155 2457.97C633.29 2451.77 638.111 2451.09 651.988 2449.4C687.529 2449.75 711.068 2458.86 730.789 2495.2Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M2233.04 2454.18L2275.59 2454.41C2297.41 2501.54 2323.75 2562.63 2344.02 2612.01C2359.46 2569.82 2392.75 2497.11 2410.98 2454.75L2451.22 2454.66L2438.73 2483.54L2382.65 2612.99C2374.07 2632.79 2359.3 2669.41 2349.95 2684.69C2348.27 2685.54 2339.54 2687.64 2338.37 2685.32C2314.41 2637.47 2292.36 2584.76 2270.02 2534.24C2255.79 2565.84 2241.69 2597.62 2227.72 2629.58C2220.34 2646.29 2210.14 2671.07 2201.81 2685.46C2196.22 2687.53 2195.73 2687.05 2189.96 2685.3C2182.06 2672.43 2093.67 2463.46 2092.21 2454.58L2130.13 2454.31C2150.82 2505.59 2174.46 2559.35 2195.92 2610.11C2213.28 2572.89 2232.72 2526.44 2249.02 2487.93C2244.56 2477.56 2237.92 2464.39 2233.04 2454.18Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1137.48 2449.32C1138.71 2449.21 1139.94 2449.13 1141.18 2449.08C1245.93 2445.24 1232.36 2547.5 1232.88 2687.81L1193.94 2687.82C1193.67 2640.44 1195.92 2586.08 1192.76 2539.84C1188.36 2475.33 1137.74 2480.06 1112.16 2490.45C1053.77 2511.38 1066.09 2605.6 1066.3 2687.4L1027.87 2687.59L1027.72 2454.68L1066.3 2454.87L1066.74 2485.84C1092.98 2459.2 1107.46 2453.49 1137.48 2449.32Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1627.7 2363.2C1645.85 2360.21 1674.85 2369.68 1692.72 2376.64L1692.75 2413.88C1677.23 2407.41 1641.9 2385.52 1629.43 2407.45C1623.1 2418.58 1624.91 2439.83 1625.39 2454.67C1653.23 2455.64 1681.46 2455.58 1709.33 2455.96L1709.4 2489.45C1681.39 2489.4 1653.39 2489.09 1625.38 2488.49L1625.32 2520.5L1625.28 2687.71L1587.02 2687.71L1586.95 2489.39L1557.24 2489.25L1557.1 2454.6L1586.81 2454.72C1586.34 2390.05 1587.97 2371.7 1627.7 2363.2Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M1758.55 2369.67L1797.02 2369.51L1796.72 2687.47L1758.6 2687.36L1758.55 2369.67Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M939.123 2454.44L977.913 2454.48L977.762 2687.61L939.08 2687.62C938.324 2611.78 938.775 2530.28 939.123 2454.44Z" />
-        <path fill="white" transform="translate(0 -1604)"
-          d="M952.952 2363.16C986.762 2360.45 1003.1 2404.64 964.268 2419.56C928.358 2422.49 915.136 2374.36 952.952 2363.16Z" />
+      <svg class="wordmark" height="22" viewBox="530 745 1945 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="white" transform="translate(0 -1604)" d="M1479.61 2368.25L1517.74 2368.25L1517.51 2687.85L1479.48 2687.89C1479.52 2678.56 1479.38 2672.65 1478.94 2663.35C1476.02 2658.69 1456.89 2675.85 1451.6 2678.72C1406.96 2702.97 1363.56 2697.62 1320.38 2667.34C1192.38 2557.43 1355.7 2366.92 1479.31 2485.3L1479.61 2368.25ZM1409.55 2656.67C1430.48 2653.41 1457.64 2642.26 1471.86 2613.07C1487.34 2581.3 1481.19 2539.66 1462.79 2516.65C1443.01 2491.9 1414.8 2481.8 1391.08 2485.73C1277.23 2502.82 1296.53 2664.41 1409.55 2656.67Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M1945.14 2449.24C1982.13 2445.92 2019.48 2455.23 2050.21 2491.51C2099.37 2550.97 2081.5 2632.36 2033.13 2668.24C2012.12 2683.83 1999.15 2687.68 1976.32 2692.86C1935.29 2694.67 1898.43 2691.03 1863.2 2648.74C1828.03 2606.27 1827 2537.01 1862.85 2494.41C1889.41 2462.84 1913.93 2454.83 1945.14 2449.24ZM1874.49 2573.05C1885.2 2649 1930.75 2657.77 1968.13 2656.51C1981.97 2653.64 1991.4 2651.59 2004.13 2643.2C2055.51 2609.35 2049.08 2526.6 2000.07 2497.62C1981.5 2486.63 1969.43 2484.68 1949.73 2485.82C1915.94 2493.17 1884.01 2507.18 1874.49 2573.05Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M730.789 2495.2C755.41 2462.12 780.94 2449.08 811.813 2448.86C833.954 2448.71 863.277 2456.99 879.134 2486.8C884.658 2497.21 888.528 2510.04 890.347 2523.98C894.054 2551.21 892.549 2653.03 892.457 2687.4L853.587 2687.34C853.378 2650.23 857.517 2524.89 846.818 2510.14C810.708 2460.38 744.823 2484.77 739.735 2576.07L739.65 2687.57L700.73 2687.59C700.595 2649.75 705.869 2530.84 691.58 2505.44C669.808 2469.53 616.642 2485.38 598.393 2520.89C581.653 2553.46 586.828 2643.28 587.016 2687.87L548.265 2687.82L548.298 2454.53C559.842 2454.48 573.861 2452.16 584.977 2454.83C588.228 2459.91 587.568 2468.01 587.96 2477.32C593.241 2476.98 611.801 2461.92 620.155 2457.97C633.29 2451.77 638.111 2451.09 651.988 2449.4C654.588 2449.17 657.191 2449.08 659.794 2449.13C687.529 2449.75 711.068 2458.86 730.789 2495.2Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M2233.04 2454.18L2275.59 2454.41C2297.41 2501.54 2323.75 2562.63 2344.02 2612.01C2359.46 2569.82 2392.75 2497.11 2410.98 2454.75L2451.22 2454.66L2438.73 2483.54L2382.65 2612.99C2374.07 2632.79 2359.3 2669.41 2349.95 2684.69C2348.27 2685.54 2339.54 2687.64 2338.37 2685.32C2314.41 2637.47 2292.36 2584.76 2270.02 2534.24C2255.79 2565.84 2241.69 2597.62 2227.72 2629.58C2220.34 2646.29 2210.14 2671.07 2201.81 2685.46C2196.22 2687.53 2195.73 2687.05 2189.96 2685.3C2182.06 2672.43 2093.67 2463.46 2092.21 2454.58L2130.13 2454.31C2150.82 2505.59 2174.46 2559.35 2195.92 2610.11C2213.28 2572.89 2232.72 2526.44 2249.02 2487.93C2244.56 2477.56 2237.92 2464.39 2233.04 2454.18Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M1137.48 2449.32C1138.71 2449.21 1139.94 2449.13 1141.18 2449.08C1245.93 2445.24 1232.36 2547.5 1232.88 2687.81L1193.94 2687.82C1193.67 2640.44 1195.92 2586.08 1192.76 2539.84C1188.36 2475.33 1137.74 2480.06 1112.16 2490.45C1053.77 2511.38 1066.09 2605.6 1066.3 2687.4L1027.87 2687.59L1027.72 2454.68L1066.3 2454.87L1066.74 2485.84C1092.98 2459.2 1107.46 2453.49 1137.48 2449.32Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M1627.7 2363.2C1645.85 2360.21 1674.85 2369.68 1692.72 2376.64L1692.75 2413.88C1677.23 2407.41 1641.9 2385.52 1629.43 2407.45C1623.1 2418.58 1624.91 2439.83 1625.39 2454.67C1653.23 2455.64 1681.46 2455.58 1709.33 2455.96L1709.4 2489.45C1681.39 2489.4 1653.39 2489.09 1625.38 2488.49L1625.32 2520.5L1625.28 2687.71L1587.02 2687.71L1586.95 2489.39L1557.24 2489.25L1557.1 2454.6L1586.81 2454.72C1586.34 2390.05 1587.97 2371.7 1627.7 2363.2Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M1758.55 2369.67L1797.02 2369.51L1796.72 2687.47L1758.6 2687.36L1758.55 2369.67Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M939.123 2454.44L977.913 2454.48L977.762 2687.61L939.08 2687.62C938.324 2611.78 938.775 2530.28 939.123 2454.44Z"/>
+        <path fill="white" transform="translate(0 -1604)" d="M952.952 2363.16C986.762 2360.45 1003.1 2404.64 964.268 2419.56C928.358 2422.49 915.136 2374.36 952.952 2363.16Z"/>
       </svg>
     </a>
+    <span class="nav-label">APRESENTAÇÃO INSTITUCIONAL • MAIO 2026</span>
   </nav>
 
-  <!-- Main -->
-  <main>
-    <div class="card">
-      <div class="card-header">
-        <div style="margin-bottom:24px">
-          <svg width="196" viewBox="530 220 1945 890" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style="display:block;margin:0 auto;overflow:visible">
-            <defs>
-              <clipPath id="m-clip-hub">
-                <path transform="translate(0 -1604)"
-                  d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-              </clipPath>
-            </defs>
-            <path id="v13-aura-path" class="v13-aura" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-flash-bloom-path" class="v13-flash-bloom" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-mid-path" class="v13-mid" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-edge-path" class="v13-edge" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-charge-path" class="v13-charge" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-fill-path" class="v13-fill" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-exit-path" class="v13-exit" fill="none" stroke="white" stroke-width="2"
-              transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-flash-path" class="v13-flash" fill="white" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-glow-fwd-path" class="v13-glow-fwd" pathLength="1000" fill="none" stroke="white"
-              stroke-width="10" stroke-linecap="round" stroke-linejoin="round" style="filter:blur(5px)"
-              transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-glow-rev-path" class="v13-glow-rev" pathLength="1000" fill="none" stroke="white"
-              stroke-width="10" stroke-linecap="round" stroke-linejoin="round" style="filter:blur(5px)"
-              transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-trace-fwd-path" class="v13-trace-fwd" pathLength="1000" fill="none" stroke="white"
-              stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <path id="v13-trace-rev-path" class="v13-trace-rev" pathLength="1000" fill="none" stroke="white"
-              stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -1604)"
-              d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" />
-            <!-- WORDMARK -->
-            <path fill="white" transform="translate(0 -1604)"
-              d="M1479.61 2368.25L1517.74 2368.25L1517.51 2687.85L1479.48 2687.89C1479.52 2678.56 1479.38 2672.65 1478.94 2663.35C1476.02 2658.69 1456.89 2675.85 1451.6 2678.72C1406.96 2702.97 1363.56 2697.62 1320.38 2667.34C1192.38 2557.43 1355.7 2366.92 1479.31 2485.3L1479.61 2368.25ZM1409.55 2656.67C1430.48 2653.41 1457.64 2642.26 1471.86 2613.07C1487.34 2581.3 1481.19 2539.66 1462.79 2516.65C1443.01 2491.9 1414.8 2481.8 1391.08 2485.73C1277.23 2502.82 1296.53 2664.41 1409.55 2656.67Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M1945.14 2449.24C1982.13 2445.92 2019.48 2455.23 2050.21 2491.51C2099.37 2550.97 2081.5 2632.36 2033.13 2668.24C2012.12 2683.83 1999.15 2687.68 1976.32 2692.86C1935.29 2694.67 1898.43 2691.03 1863.2 2648.74C1828.03 2606.27 1827 2537.01 1862.85 2494.41C1889.41 2462.84 1913.93 2454.83 1945.14 2449.24ZM1874.49 2573.05C1885.2 2649 1930.75 2657.77 1968.13 2656.51C1981.97 2653.64 1991.4 2651.59 2004.13 2643.2C2055.51 2609.35 2049.08 2526.6 2000.07 2497.62C1981.5 2486.63 1969.43 2484.68 1949.73 2485.82C1915.94 2493.17 1884.01 2507.18 1874.49 2573.05Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M730.789 2495.2C755.41 2462.12 780.94 2449.08 811.813 2448.86C833.954 2448.71 863.277 2456.99 879.134 2486.8C884.658 2497.21 888.528 2510.04 890.347 2523.98C894.054 2551.21 892.549 2653.03 892.457 2687.4L853.587 2687.34C853.378 2650.23 857.517 2524.89 846.818 2510.14C810.708 2460.38 744.823 2484.77 739.735 2576.07L739.65 2687.57L700.73 2687.59C700.595 2649.75 705.869 2530.84 691.58 2505.44C669.808 2469.53 616.642 2485.38 598.393 2520.89C581.653 2553.46 586.828 2643.28 587.016 2687.87L548.265 2687.82L548.298 2454.53C559.842 2454.48 573.861 2452.16 584.977 2454.83C588.228 2459.91 587.568 2468.01 587.96 2477.32C593.241 2476.98 611.801 2461.92 620.155 2457.97C633.29 2451.77 638.111 2451.09 651.988 2449.4C687.529 2449.75 711.068 2458.86 730.789 2495.2Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M2233.04 2454.18L2275.59 2454.41C2297.41 2501.54 2323.75 2562.63 2344.02 2612.01C2359.46 2569.82 2392.75 2497.11 2410.98 2454.75L2451.22 2454.66L2438.73 2483.54L2382.65 2612.99C2374.07 2632.79 2359.3 2669.41 2349.95 2684.69C2348.27 2685.54 2339.54 2687.64 2338.37 2685.32C2314.41 2637.47 2292.36 2584.76 2270.02 2534.24C2255.79 2565.84 2241.69 2597.62 2227.72 2629.58C2220.34 2646.29 2210.14 2671.07 2201.81 2685.46C2196.22 2687.53 2195.73 2687.05 2189.96 2685.3C2182.06 2672.43 2093.67 2463.46 2092.21 2454.58L2130.13 2454.31C2150.82 2505.59 2174.46 2559.35 2195.92 2610.11C2213.28 2572.89 2232.72 2526.44 2249.02 2487.93C2244.56 2477.56 2237.92 2464.39 2233.04 2454.18Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M1137.48 2449.32C1138.71 2449.21 1139.94 2449.13 1141.18 2449.08C1245.93 2445.24 1232.36 2547.5 1232.88 2687.81L1193.94 2687.82C1193.67 2640.44 1195.92 2586.08 1192.76 2539.84C1188.36 2475.33 1137.74 2480.06 1112.16 2490.45C1053.77 2511.38 1066.09 2605.6 1066.3 2687.4L1027.87 2687.59L1027.72 2454.68L1066.3 2454.87L1066.74 2485.84C1092.98 2459.2 1107.46 2453.49 1137.48 2449.32Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M1627.7 2363.2C1645.85 2360.21 1674.85 2369.68 1692.72 2376.64L1692.75 2413.88C1677.23 2407.41 1641.9 2385.52 1629.43 2407.45C1623.1 2418.58 1624.91 2439.83 1625.39 2454.67C1653.23 2455.64 1681.46 2455.58 1709.33 2455.96L1709.4 2489.45C1681.39 2489.4 1653.39 2489.09 1625.38 2488.49L1625.32 2520.5L1625.28 2687.71L1587.02 2687.71L1586.95 2489.39L1557.24 2489.25L1557.1 2454.6L1586.81 2454.72C1586.34 2390.05 1587.97 2371.7 1627.7 2363.2Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M1758.55 2369.67L1797.02 2369.51L1796.72 2687.47L1758.6 2687.36L1758.55 2369.67Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M939.123 2454.44L977.913 2454.48L977.762 2687.61L939.08 2687.62C938.324 2611.78 938.775 2530.28 939.123 2454.44Z" />
-            <path fill="white" transform="translate(0 -1604)"
-              d="M952.952 2363.16C986.762 2360.45 1003.1 2404.64 964.268 2419.56C928.358 2422.49 915.136 2374.36 952.952 2363.16Z" />
+  <!-- ─── SLIDES ─── -->
+
+  <!-- SLIDE 1: CAPA -->
+  <section class="slide" id="slide-1">
+    <div class="slide-inner">
+      <div class="hero-content">
+        <div class="hero-logo-wrap">
+          <svg viewBox="530 220 1945 890" width="200"  fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(0 -1604)">
+              <path id="v13-aura-path" class="v13-aura" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-flash-bloom-path" class="v13-flash-bloom" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-mid-path" class="v13-mid" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-edge-path" class="v13-edge" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-charge-path" class="v13-charge" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-fill-path" class="v13-fill" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-exit-path" class="v13-exit" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="v13-flash-path" class="v13-flash" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="white"/>
+              <path id="v13-glow-fwd-path" class="v13-glow-fwd" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="none" stroke="white" stroke-width="10" pathLength="1000" stroke-linecap="round" stroke-linejoin="round" style="filter:blur(5px)"/>
+              <path id="v13-glow-rev-path" class="v13-glow-rev" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="none" stroke="white" stroke-width="10" pathLength="1000" stroke-linecap="round" stroke-linejoin="round" style="filter:blur(5px)"/>
+              <path id="v13-trace-fwd-path" class="v13-trace-fwd" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="none" stroke="white" stroke-width="3" pathLength="1000" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="v13-trace-rev-path" class="v13-trace-rev" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z" fill="none" stroke="white" stroke-width="3" pathLength="1000" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Wordmark (static) -->
+              <path fill="white" d="M1479.61 2368.25L1517.74 2368.25L1517.51 2687.85L1479.48 2687.89C1479.52 2678.56 1479.38 2672.65 1478.94 2663.35C1476.02 2658.69 1456.89 2675.85 1451.6 2678.72C1406.96 2702.97 1363.56 2697.62 1320.38 2667.34C1192.38 2557.43 1355.7 2366.92 1479.31 2485.3L1479.61 2368.25ZM1409.55 2656.67C1430.48 2653.41 1457.64 2642.26 1471.86 2613.07C1487.34 2581.3 1481.19 2539.66 1462.79 2516.65C1443.01 2491.9 1414.8 2481.8 1391.08 2485.73C1277.23 2502.82 1296.53 2664.41 1409.55 2656.67Z"/>
+              <path fill="white" d="M1945.14 2449.24C1982.13 2445.92 2019.48 2455.23 2050.21 2491.51C2099.37 2550.97 2081.5 2632.36 2033.13 2668.24C2012.12 2683.83 1999.15 2687.68 1976.32 2692.86C1935.29 2694.67 1898.43 2691.03 1863.2 2648.74C1828.03 2606.27 1827 2537.01 1862.85 2494.41C1889.41 2462.84 1913.93 2454.83 1945.14 2449.24ZM1874.49 2573.05C1885.2 2649 1930.75 2657.77 1968.13 2656.51C1981.97 2653.64 1991.4 2651.59 2004.13 2643.2C2055.51 2609.35 2049.08 2526.6 2000.07 2497.62C1981.5 2486.63 1969.43 2484.68 1949.73 2485.82C1915.94 2493.17 1884.01 2507.18 1874.49 2573.05Z"/>
+              <path fill="white" d="M730.789 2495.2C755.41 2462.12 780.94 2449.08 811.813 2448.86C833.954 2448.71 863.277 2456.99 879.134 2486.8C884.658 2497.21 888.528 2510.04 890.347 2523.98C894.054 2551.21 892.549 2653.03 892.457 2687.4L853.587 2687.34C853.378 2650.23 857.517 2524.89 846.818 2510.14C810.708 2460.38 744.823 2484.77 739.735 2576.07L739.65 2687.57L700.73 2687.59C700.595 2649.75 705.869 2530.84 691.58 2505.44C669.808 2469.53 616.642 2485.38 598.393 2520.89C581.653 2553.46 586.828 2643.28 587.016 2687.87L548.265 2687.82L548.298 2454.53C559.842 2454.48 573.861 2452.16 584.977 2454.83C588.228 2459.91 587.568 2468.01 587.96 2477.32C593.241 2476.98 611.801 2461.92 620.155 2457.97C633.29 2451.77 638.111 2451.09 651.988 2449.4C654.588 2449.17 657.191 2449.08 659.794 2449.13C687.529 2449.75 711.068 2458.86 730.789 2495.2Z"/>
+              <path fill="white" d="M2233.04 2454.18L2275.59 2454.41C2297.41 2501.54 2323.75 2562.63 2344.02 2612.01C2359.46 2569.82 2392.75 2497.11 2410.98 2454.75L2451.22 2454.66L2438.73 2483.54L2382.65 2612.99C2374.07 2632.79 2359.3 2669.41 2349.95 2684.69C2348.27 2685.54 2339.54 2687.64 2338.37 2685.32C2314.41 2637.47 2292.36 2584.76 2270.02 2534.24C2255.79 2565.84 2241.69 2597.62 2227.72 2629.58C2220.34 2646.29 2210.14 2671.07 2201.81 2685.46C2196.22 2687.53 2195.73 2687.05 2189.96 2685.3C2182.06 2672.43 2093.67 2463.46 2092.21 2454.58L2130.13 2454.31C2150.82 2505.59 2174.46 2559.35 2195.92 2610.11C2213.28 2572.89 2232.72 2526.44 2249.02 2487.93C2244.56 2477.56 2237.92 2464.39 2233.04 2454.18Z"/>
+              <path fill="white" d="M1137.48 2449.32C1138.71 2449.21 1139.94 2449.13 1141.18 2449.08C1245.93 2445.24 1232.36 2547.5 1232.88 2687.81L1193.94 2687.82C1193.67 2640.44 1195.92 2586.08 1192.76 2539.84C1188.36 2475.33 1137.74 2480.06 1112.16 2490.45C1053.77 2511.38 1066.09 2605.6 1066.3 2687.4L1027.87 2687.59L1027.72 2454.68L1066.3 2454.87L1066.74 2485.84C1092.98 2459.2 1107.46 2453.49 1137.48 2449.32Z"/>
+              <path fill="white" d="M1627.7 2363.2C1645.85 2360.21 1674.85 2369.68 1692.72 2376.64L1692.75 2413.88C1677.23 2407.41 1641.9 2385.52 1629.43 2407.45C1623.1 2418.58 1624.91 2439.83 1625.39 2454.67C1653.23 2455.64 1681.46 2455.58 1709.33 2455.96L1709.4 2489.45C1681.39 2489.4 1653.39 2489.09 1625.38 2488.49L1625.32 2520.5L1625.28 2687.71L1587.02 2687.71L1586.95 2489.39L1557.24 2489.25L1557.1 2454.6L1586.81 2454.72C1586.34 2390.05 1587.97 2371.7 1627.7 2363.2Z"/>
+              <path fill="white" d="M1758.55 2369.67L1797.02 2369.51L1796.72 2687.47L1758.6 2687.36L1758.55 2369.67Z"/>
+              <path fill="white" d="M939.123 2454.44L977.913 2454.48L977.762 2687.61L939.08 2687.62C938.324 2611.78 938.775 2530.28 939.123 2454.44Z"/>
+              <path fill="white" d="M952.952 2363.16C986.762 2360.45 1003.1 2404.64 964.268 2419.56C928.358 2422.49 915.136 2374.36 952.952 2363.16Z"/>
+            </g>
           </svg>
         </div>
-        <h1 class="card-title">Hub Interno</h1>
-        <p class="card-sub">Acesse as plataformas da MindFlow</p>
+        <p class="hero-tagline">IA que vende com maestria</p>
+        <h1 class="display">
+          Seu <span class="display-em">time de vendas</span><br>
+          que nunca dorme
+        </h1>
+        <p class="hero-sub">
+          A MindFlow não é um chatbot. É sua equipe de vendas — construída para o mercado brasileiro,<br>
+          com a infraestrutura que outras IAs não têm.
+        </p>
+        <div class="hero-cta">
+          <a href="#slide-2" class="btn-primary">
+            <span>Explorar apresentação</span>
+            <span class="material-symbols-outlined" style="font-size:18px;">arrow_downward</span>
+          </a>
+          <a href="#slide-14" class="btn-secondary">
+            <span>Falar com equipe</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: O PROBLEMA -->
+  <section class="slide" id="slide-2">
+    <div class="slide-inner" style="max-width:1200px; margin:0 auto;">
+      <!-- Top: label + headline + hero stat -->
+      <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:start;">
+        <div>
+          <span class="label-accent" style="font-size:12px; display:block; margin-bottom:16px;">O Problema</span>
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.03em;margin-bottom:8px;">Seu time já não consegue<br>conversar com todo<br>lead que aparece.</h2>
+          <div style="width:48px;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:2px;margin-top:20px;"></div>
+        </div>
+        <div style="position:relative; padding-left:32px; border-left:1px solid rgba(255,255,255,0.06);">
+          <div style="position:relative;">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(72px,10vw,140px);font-weight:800;line-height:0.85;letter-spacing:-0.05em;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;">&lt;5<span style="font-size:clamp(40px,5vw,70px);">min</span></div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(200px,20vw,320px);height:clamp(200px,20vw,320px);background:radial-gradient(circle,rgba(46,79,255,0.06) 0%,transparent 70%);pointer-events:none;border-radius:50%;z-index:0;"></div>
+          </div>
+          <div style="margin-top:16px;font-size:clamp(14px,1.1vw,17px);line-height:1.6;max-width:340px;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">É o tempo máximo que separa um lead quente de uma oportunidade perdida.</div>
+        </div>
       </div>
 
-      <form class="form" id="loginForm">
-        <div class="alert" id="alert">
-          <span class="material-symbols-outlined">error</span>
-          <span id="alertMsg"></span>
-        </div>
-
-        <div class="field">
-          <label class="field-label" for="username">E-mail</label>
-          <div class="input-wrap">
-            <span class="material-symbols-outlined">mail</span>
-            <input type="email" id="username" placeholder="seu@email.com" autocomplete="email" required>
+      <!-- Bottom: Three pillars -->
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:48px;">
+        <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:28px; transition:all 0.3s; text-align:center;" onmouseover="this.style.background='rgba(46,79,255,0.06)'" onmouseout="this.style.background=''">
+          <div style="width:28px;height:28px;border-radius:8px;background:rgba(46,79,255,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--blue2);">call_received</span>
           </div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px;line-height:1.3;">Lead não atendido<br>vira frio</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;">Em menos de 5 minutos. Velocidade é conversão — cada minuto custa oportunidades.</p>
         </div>
-
-        <div class="field">
-          <label class="field-label" for="password">Senha</label>
-          <div class="input-wrap">
-            <span class="material-symbols-outlined">lock</span>
-            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+        <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:28px; transition:all 0.3s; text-align:center;" onmouseover="this.style.background='rgba(0,181,160,0.06)'" onmouseout="this.style.background=''">
+          <div style="width:28px;height:28px;border-radius:8px;background:rgba(0,181,160,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--teal);">call_made</span>
           </div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px;line-height:1.3;">Lead sem cadência<br>vira churn</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;">Sem sequência estruturada, o lead conquistado se perde. Follow-up constante é o que fecha.</p>
         </div>
-
-        <button type="submit" class="btn" id="loginBtn">
-          <span class="material-symbols-outlined">login</span>
-          <span class="btn-text">Entrar</span>
-          <span class="spinner"></span>
-        </button>
-      </form>
+        <div style="background:rgba(255,255,255,0.02); border-radius:14px; padding:28px; transition:all 0.3s; text-align:center;" onmouseover="this.style.background='rgba(255,77,77,0.06)'" onmouseout="this.style.background=''">
+          <div style="width:28px;height:28px;border-radius:8px;background:rgba(255,77,77,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+            <span class="material-symbols-outlined" style="font-size:16px;color:#FF4D4D;">schedule</span>
+          </div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:8px;line-height:1.3;">Hora útil do time<br>virou luxo</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.5;">Enquanto seu time vende, a IA qualifica. Enquanto seu time fecha, a IA nutre.</p>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer class="footer">MindFlow &copy; 2026 — Hub Interno</footer>
+  <!-- SLIDE 3: POR QUE MINDFLOW -->
+  <section class="slide" id="slide-3">
+    <div class="slide-inner text-center" style="max-width:900px; margin:0 auto;">
+      <span class="label-accent mb-8">Por que MindFlow</span>
+      <h2 class="display mb-16">N&atilde;o &eacute; um chatbot.<br><span class="display-em">&Eacute; sua equipe de vendas.</span></h2>
+      <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:48px;">
+        <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:rgba(46,79,255,0.08); border:1px solid rgba(46,79,255,0.15); border-radius:100px; font-size:13px; color:rgba(255,255,255,0.7);">
+          <span class="material-symbols-outlined" style="font-size:16px;color:var(--blue2);">record_voice_over</span>
+          Voz brasileira nativa
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:rgba(0,181,160,0.08); border:1px solid rgba(0,181,160,0.15); border-radius:100px; font-size:13px; color:rgba(255,255,255,0.7);">
+          <span class="material-symbols-outlined" style="font-size:16px;color:var(--teal);">psychology</span>
+          SPIN + GPCT em tempo real
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:rgba(46,79,255,0.08); border:1px solid rgba(46,79,255,0.15); border-radius:100px; font-size:13px; color:rgba(255,255,255,0.7);">
+          <span class="material-symbols-outlined" style="font-size:16px;color:var(--blue2);">integration_instructions</span>
+          CRM nativo
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 18px; background:rgba(0,181,160,0.08); border:1px solid rgba(0,181,160,0.15); border-radius:100px; font-size:13px; color:rgba(255,255,255,0.7);">
+          <span class="material-symbols-outlined" style="font-size:16px;color:var(--teal);">verified</span>
+          LGPD por design
+        </span>
+      </div>
+      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin-bottom:36px;"></div>
+      <div style="display:flex;gap:48px;justify-content:center;">
+        <div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">&lt;5%</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:4px;">percebem ser IA</p>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+        <div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:800;color:var(--teal);">24/7</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:4px;">opera&ccedil;&atilde;o cont&iacute;nua</p>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.15);"></div>
+        <div>
+          <p style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:800;color:var(--blue2);">LGPD</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:4px;">compliance-first</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const form = document.getElementById('loginForm');
-    const alert = document.getElementById('alert');
-    const alertMsg = document.getElementById('alertMsg');
-    const btn = document.getElementById('loginBtn');
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
+  <!-- SLIDE 4: COMO FUNCIONA -->
+  <section class="slide" id="slide-4">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Como Funciona</span>
+      <h2 class="heading-xl mb-16">Nosso time constrói.<br><span class="display-em">O seu vende.</span></h2>
+      <p class="body-lg" style="max-width:600px; margin:0 auto; color:var(--muted);">Três fases. Da imersão à operação. Do genérico ao exatamente você.</p>
+      <div class="phases">
+        <div class="phase">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="justify-self:end;"><div class="phase-icon" style="margin-bottom:0;"><span class="material-symbols-outlined" style="color:var(--blue2);font-size:22px;">search</span></div></div>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0.4;">01</span>
+          </div>
+          <h4 style="text-align:center;">Mergulhamos na sua operação</h4>
+          <p style="text-align:center;">Entendemos o pitch, o ICP, os CRMs e as objeções reais. Customização exige entender o negócio antes de configurar.</p>
+        </div>
+        <div class="phase">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="justify-self:end;"><div class="phase-icon" style="margin-bottom:0;"><span class="material-symbols-outlined" style="color:var(--teal);font-size:22px;">build</span></div></div>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0.4;">02</span>
+          </div>
+          <h4 style="text-align:center;">Construímos a IA no seu contexto</h4>
+          <p style="text-align:center;">Voz, tom, cadência e integrações. Nada genérico. É a sua operação que a IA reflete.</p>
+        </div>
+        <div class="phase">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="justify-self:end;"><div class="phase-icon" style="margin-bottom:0;"><span class="material-symbols-outlined" style="color:var(--blue2);font-size:22px;">trending_up</span></div></div>
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--blue2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0.4;">03</span>
+          </div>
+          <h4 style="text-align:center;">Operamos e evoluímos com você</h4>
+          <p style="text-align:center;">A cada ciclo refinamos performance e scripts. A IA do mês 6 é substancialmente melhor que a do mês 1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function showError(msg) {
-      alertMsg.textContent = msg;
-      alert.classList.add('show');
-    }
-    function hideError() {
-      alert.classList.remove('show');
-    }
-    function markError(el) {
-      el.classList.add('error');
-      el.addEventListener('input', () => el.classList.remove('error'), { once: true });
-    }
+  <!-- SLIDE 5: DIFERENCIAIS -->
+  <section class="slide" id="slide-5">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Diferenciais</span>
+      <h2 class="heading-xl mb-16">Construímos para o<br><span class="display-em">mercado brasileiro.</span></h2>
+      <p class="body-lg" style="max-width:600px; margin:0 auto; color:var(--muted);">Voz brasileira, cadência humana. Ninguém desliga achando que era robô.</p>
+      <div class="diffs-grid">
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--teal);">translate</span></div><h4>Voz Brasileira</h4><p>Regionalismos e entonação natural. A IA entende e fala como uma pessoa real.</p></div>
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--blue2);">psychology</span></div><h4>SPIN + GPCT</h4><p>Aplica frameworks reais de vendas. Identifica dor e adapta discurso em tempo real.</p></div>
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--teal);">phone_iphone</span></div><h4>WhatsApp + Telefone</h4><p>Liga e responde via operadoras reais com números dedicados. Omnichannel real.</p></div>
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--blue2);">hub</span></div><h4>Integração nativa com CRM</h4><p>HubSpot, Pipedrive, Salesforce. Leads chegam classificados e prontos.</p></div>
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--teal);">security</span></div><h4>LGPD por Design</h4><p>Criptografia e opt-out imediato. Compliance total desde o dia 1.</p></div>
+        <div class="diff-card"><div class="diff-icon"><span class="material-symbols-outlined" style="color:var(--blue2);">mic</span></div><h4>Toda conversa auditável</h4><p>Transcrição e gravação total. Transparência completa da operação.</p></div>
+      </div>
+    </div>
+  </section>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      hideError();
+  <!-- SLIDE 6: ARQUITETURA MODULAR -->
+  <section class="slide" id="slide-6">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Arquitetura Modular</span>
+      <h2 class="heading-xl mb-16">Configure pelo que sua<br><span class="display-em">operação precisa.</span></h2>
+      <div class="modules-grid">
+        <div class="module"><div class="module-tag">Inbound</div><h4>Receptivo</h4><p>Atende leads de campanhas e WhatsApp incoming em segundos. Qualifica e agenda reuniões automaticamente.</p><ul><li>Resposta em &lt;30s</li><li>Qualificação automática</li><li>Agenda no CRM</li></ul></div>
+        <div class="module"><div class="module-tag">Outbound</div><h4>Prospecção ativa</h4><p>Ligação para listas frias ou mornas com cadência multicanal. Follow-up constante até a conversão.</p><ul><li>Cadência multicanal</li><li>Follow-up automático</li><li>Reativação de leads</li></ul></div>
+        <div class="module module-highlight"><div class="module-tag">Completa</div><h4>Operação total</h4><p>Pipeline comercial end-to-end. Nutrição, fechamento e pós-venda integrados em uma única infraestrutura.</p><ul><li>Pipeline end-to-end</li><li>Pós-venda integrado</li><li>Escala sob demanda</li></ul></div>
+      </div>
+      <p class="body-md" style="margin-top:24px; color:var(--muted);">O pricing acompanha o volume real. Você escala quando sua operação escalar.</p>
+    </div>
+  </section>
 
-      if (!username.value.trim()) { showError('Informe seu e-mail.'); markError(username); return; }
-      if (!password.value) { showError('Informe sua senha.'); markError(password); return; }
+  <!-- SLIDE 7: INTELIGÊNCIA DE OPERAÇÃO -->
+  <section class="slide" id="slide-7">
+    <div class="slide-inner">
+      <div class="card anim-border">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+          <div>
+            <span class="label-accent mb-8" style="display:block;">Inteligência de Operação</span>
+            <h2 class="heading-lg">A ligação vale.<br>O dado que ela gera vale mais.</h2>
+          </div>
+          <div style="text-align:right;">
+            <p class="label" style="font-size:10px;">HORA ÚTIL</p>
+            <p class="heading-md dash-count" style="color:var(--teal);" data-target="1847">0</p>
+            <p class="label" style="font-size:10px;">LIGAÇÕES NO MÊS</p>
+          </div>
+        </div>
+        <div class="slide-divider"></div>
+        <div class="dash-grid">
+          <div class="dash-card"><p class="dash-value dash-count" style="color:var(--blue2);" data-target="1847">0</p><p class="dash-label">Ligações realizadas</p></div>
+          <div class="dash-card"><p class="dash-value dash-count" style="color:var(--teal);" data-target="89">0</p><p class="dash-label">Agendadas</p></div>
+          <div class="dash-card"><p class="dash-value dash-count" style="color:var(--blue2);" data-target="412">0</p><p class="dash-label">Qualificadas</p></div>
+          <div class="dash-card"><p class="dash-value dash-count" style="color:var(--teal);" data-target="22">0</p><p class="dash-label">Taxa de conversão %</p></div>
+        </div>
+        <div class="dash-graph">
+          <div class="dash-row"><span class="dash-row-label">Inbound</span><div class="dash-bar-track"><div class="dash-bar-fill dash-bar" data-width="85" style="width:0%;"></div></div><span class="dash-row-value dash-count" style="color:var(--blue2);" data-target="847">0</span></div>
+          <div class="dash-row"><span class="dash-row-label">Outbound</span><div class="dash-bar-track"><div class="dash-bar-fill dash-bar" data-width="62" style="width:0%;"></div></div><span class="dash-row-value dash-count" style="color:var(--teal);" data-target="623">0</span></div>
+          <div class="dash-row"><span class="dash-row-label">Follow-up</span><div class="dash-bar-track"><div class="dash-bar-fill dash-bar" data-width="45" style="width:0%;"></div></div><span class="dash-row-value dash-count" style="color:var(--blue2);" data-target="377">0</span></div>
+          <div class="dash-row"><span class="dash-row-label">Reuniões</span><div class="dash-bar-track"><div class="dash-bar-fill dash-bar" data-width="28" style="width:0%;"></div></div><span class="dash-row-value dash-count" style="color:var(--teal);" data-target="89">0</span></div>
+        </div>
+        <div style="margin-top:24px; display:flex; gap:24px; flex-wrap:wrap; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:12px;"><span class="material-symbols-outlined" style="color:var(--teal);">schedule</span><span style="font-size:14px; color:rgba(255,255,255,0.6);">Operação 24/7, incluindo fins de semana e feriados</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span class="material-symbols-outlined" style="color:var(--blue2);">speed</span><span style="font-size:14px; color:rgba(255,255,255,0.6);">&lt;30s resposta a lead inbound</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      btn.classList.add('loading');
-      btn.disabled = true;
+  <!-- SLIDE 8-9: CASOS DE USO -->
+  <section class="slide" id="slide-8">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Casos de Uso</span>
+      <h2 class="heading-xl mb-16">Em cada etapa do<br><span class="display-em">ciclo comercial</span></h2>
+      <div class="cases-grid text-center" style="text-align:center;">
+        <div class="case-card"><div class="case-phase">Fase 01 — Contato</div><h4>Resposta imediata</h4><p>Setores de alta concorrência: Energia solar, estética high ticket. A IA liga em segundos após o formulário. Velocidade é conversão.</p></div>
+        <div class="case-card"><div class="case-phase">Fase 02 — Qualificação</div><h4>SPIN e GPCT em tempo real</h4><p>Conversas técnicas e tratativa de objeções com frameworks reais. A IA aplica o pitch exatamente como sua empresa faria.</p></div>
+        <div class="case-card"><div class="case-phase">Fase 03 — Cadência</div><h4>Nutrição contínua</h4><p>Lead não atendeu? WhatsApp automático com contexto. Transbordo inteligente: o humano entra com resumo total da IA.</p></div>
+        <div class="case-card"><div class="case-phase">Fase 04 — Pós-venda</div><h4>Retenção</h4><p>Atendimento sem URA. Reativação de clientes dormentes e defesa de carteira. IA no volume, time na alta complexidade.</p></div>
+      </div>
+    </div>
+  </section>
 
-      try {
-        const res = await fetch('/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: username.value.trim(), password: password.value }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          showError(data.error || 'Erro ao autenticar.');
-          markError(username); markError(password);
-        } else {
-          window.location.href = '/hub';
+  <!-- SLIDE 10: OPERAÇÕES ATIVAS -->
+  <section class="slide" id="slide-9">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Operações Ativas</span>
+      <h2 class="heading-xl mb-16">Operações rodando em<br><span class="display-em">setores estratégicos</span></h2>
+      <p class="body-lg" style="max-width:500px; margin:0 auto; color:var(--muted);">A MindFlow já opera em diversos segmentos, com resultados comprovados.</p>
+      <div class="sectors">
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">account_balance</span> Cooperativas de crédito</span>
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">apartment</span> Condomínios</span>
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">wifi</span> Provedores regionais</span>
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">trending_up</span> Assessorias de investimento</span>
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">meeting_room</span> Portarias virtuais</span>
+        <span class="sector-pill"><span class="material-symbols-outlined" style="font-size:16px; vertical-align:middle; margin-right:6px;">local_hospital</span> Planos de saúde regionais</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: INDICADORES -->
+  <section class="slide" id="slide-10">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Indicadores</span>
+      <h2 class="heading-xl mb-16">O que muda quando<br>o <span class="display-em">Kaique</span> entra em operação</h2>
+      <div class="indicators-grid">
+        <div class="indicator"><div class="indicator-num">+247%</div><div class="indicator-text"><h4>Mais conversas qualificadas</h4><p>Com a mesma equipe, sem contratar mais pessoas.</p></div></div>
+        <div class="indicator"><div class="indicator-num">24/7</div><div class="indicator-text"><h4>Operação contínua</h4><p>Incluindo fins de semana e feriados.</p></div></div>
+        <div class="indicator"><div class="indicator-num">-63%</div><div class="indicator-text"><h4>Redução no custo por reunião</h4><p>Menos desperdício, mais reuniões qualificadas.</p></div></div>
+        <div class="indicator"><div class="indicator-num">&lt;30s</div><div class="indicator-text"><h4>Resposta a lead inbound</h4><p>Não horas depois. Segundos. O lead quente é atendido na hora.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: IMPLEMENTAÇÃO -->
+  <section class="slide" id="slide-11">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Implementação</span>
+      <h2 class="heading-xl mb-16">Entre 2 e 4 semanas<br><span class="display-em">do kickoff à operação</span></h2>
+      <p class="body-lg" style="max-width:500px; margin:0 auto; color:var(--muted);">Rápido de implementar. Preciso no resultado.</p>
+      <div class="timeline">
+        <div class="tl-step active"><div class="tl-week">Semana 1-2</div><div class="tl-title">Kickoff + Mergulho</div><div class="tl-desc">Entendimento do pitch e CRMs</div></div>
+        <div class="tl-step active"><div class="tl-week">Semana 2-3</div><div class="tl-title">Construção + Treino</div><div class="tl-desc">Voz, tom e cadências configurados</div></div>
+        <div class="tl-step active"><div class="tl-week">Semana 4</div><div class="tl-title">Soft Launch</div><div class="tl-desc">Primeiras ligações e ajustes finos</div></div>
+      </div>
+      <p class="body-md" style="margin-top:24px; color:var(--muted);">Casos complexos (setor regulado, múltiplos fluxos) podem levar mais.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: FAQ -->
+  <section class="slide" id="slide-12">
+    <div class="slide-inner text-center">
+      <span class="label-accent mb-16" style="display:block;">Perguntas Frequentes</span>
+      <h2 class="heading-xl mb-16">Você já pensou nisso.<br><span class="display-em">A gente também.</span></h2>
+      <div class="faq-list">
+        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>A IA soa robótica?</div><div class="faq-a-wrap"><div class="faq-a">Construímos o Kaique para soar natural. Menos de 5% dos leads percebem ser IA. A entonação, os regionismos e as pausas naturais fazem a diferença.</div></div></div>
+        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>E a LGPD?</div><div class="faq-a-wrap"><div class="faq-a">Consentimento explícito e criptografia total. Somos compliance-first. LGPD por design desde o início da operação.</div></div></div>
+        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>Funciona com meu CRM?</div><div class="faq-a-wrap"><div class="faq-a">Integramos via API com HubSpot, Pipedrive, Salesforce e outros. Leads chegam classificados e prontos para ação.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: PRÓXIMOS PASSOS -->
+  <section class="slide" id="slide-13">
+    <div class="slide-inner text-center">
+      <p class="hero-tagline">Próximos Passos</p>
+      <h2 class="display mb-16">Uma ligação vale mais<br>que <span class="display-em">mil demos.</span></h2>
+      <p class="body-lg" style="max-width:600px; margin:0 auto; color:var(--muted);">Em 30 segundos você vai ouvir exatamente o que o seu próximo lead vai ouvir. Prove a IA que seus clientes vão experimentar.</p>
+      <div class="hero-cta" style="flex-direction:column; align-items:center;">
+        <a class="btn-primary" id="btn-testar" onclick="event.preventDefault(); toggleDisparo();" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; text-decoration:none;">
+          <span id="btn-testar-texto">Testar IA</span>
+          <span class="material-symbols-outlined" id="btn-testar-icone" style="font-size:18px; transition:transform 0.35s;">expand_more</span>
+        </a>
+      </div>
+      <div id="disparo-info" style="display:none; max-width:480px; margin:20px auto 0; flex-direction:column;">
+        <style>
+          #testForm input:-webkit-autofill,
+          #testForm input:-webkit-autofill:hover,
+          #testForm input:-webkit-autofill:focus,
+          #testForm input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #0d1120 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            caret-color: #fff !important;
+          }
+          #testForm .field-ok { border-color: rgba(0,181,160,0.4) !important; }
+          #testForm .clear-btn { position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; color:#444656; cursor:pointer; font-size:16px; padding:4px; display:none; border-radius:4px; font-family:'Material Symbols Outlined'; line-height:1; }
+          #testForm .input-wrap:hover .clear-btn.has-content { display:flex; }
+        </style>
+        <form id="testForm" onsubmit="testSubmit(event)" novalidate style="width:100%;">
+          <div class="input-wrap" style="display:flex; align-items:center; position:relative; margin-bottom:10px;">
+            <span class="material-symbols-outlined" style="position:absolute; left:12px; font-size:18px; color:#444656; pointer-events:none; top:50%; transform:translateY(-50%);">person</span>
+            <input type="text" id="input-nome" placeholder="Seu nome" required style="width:100%; height:46px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,.1); border-radius:10px; color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:0 42px 0 42px; outline:none;" onfocus="this.style.borderColor='rgba(46,79,255,.75)'; this.style.boxShadow='0 0 0 3px rgba(46,79,255,.14)'" onblur="this.style.borderColor=''; this.style.boxShadow=''" oninput="limparBtn(this,'input-nome-clear'); validarCampo(this,'input-nome',2)">
+            <button type="button" class="clear-btn" id="input-nome-clear" onclick="limparInput('input-nome')">cancel</button>
+          </div>
+          <div class="input-wrap" style="display:flex; align-items:center; position:relative; margin-bottom:10px;">
+            <span class="material-symbols-outlined" style="position:absolute; left:12px; font-size:18px; color:#444656; pointer-events:none; top:50%; transform:translateY(-50%);">call</span>
+            <input type="tel" id="input-telefone" placeholder="(11) 98765-4321" required style="width:100%; height:46px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,.1); border-radius:10px; color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:0 42px 0 42px; outline:none;" onfocus="this.style.borderColor='rgba(46,79,255,.75)'; this.style.boxShadow='0 0 0 3px rgba(46,79,255,.14)'" onblur="this.style.borderColor=''; this.style.boxShadow=''" oninput="mascararTelefone(this); limparBtn(this,'input-telefone-clear'); validarCampo(this,'input-telefone',10)">
+            <button type="button" class="clear-btn" id="input-telefone-clear" onclick="limparInput('input-telefone')">cancel</button>
+          </div>
+          <div class="input-wrap" style="display:flex; align-items:center; position:relative; margin-bottom:14px;">
+            <span class="material-symbols-outlined" style="position:absolute; left:12px; font-size:18px; color:#444656; pointer-events:none; top:50%; transform:translateY(-50%);">mail</span>
+            <input type="email" id="input-email" placeholder="seuemail@exemplo.com" required style="width:100%; height:46px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,.1); border-radius:10px; color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:0 42px 0 42px; outline:none;" onfocus="this.style.borderColor='rgba(46,79,255,.75)'; this.style.boxShadow='0 0 0 3px rgba(46,79,255,.14)'" onblur="this.style.borderColor=''; this.style.boxShadow=''" oninput="limparBtn(this,'input-email-clear'); validarCampo(this,'input-email',3)">
+            <button type="button" class="clear-btn" id="input-email-clear" onclick="limparInput('input-email')">cancel</button>
+          </div>
+          <button type="submit" id="test-submit-btn" style="width:100%; height:44px; border:none; border-radius:10px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:opacity .2s;">
+            <span id="test-btn-ico" class="material-symbols-outlined" style="font-size:18px;">call</span>
+            <span id="test-btn-label">Iniciar Ligação</span>
+            <span id="test-spinner" style="display:none; width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:s-spin .6s linear infinite;"></span>
+          </button>
+          <div style="margin-top:10px; display:flex; align-items:center; gap:8px; justify-content:center;">
+            <span id="test-dot" style="width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.2); transition:background .3s;"></span>
+            <span id="test-status" style="font-size:12px; color:var(--muted); transition:color .3s;">Preencha seu nome</span>
+          </div>
+        </form>
+      </div>
+      <script>
+        function mascararTelefone(el) {
+          var v = el.value.replace(/\D/g,'').slice(0,11);
+          if (!v) { el.value = ''; return; }
+          if(v.length<=2) el.value = '('+v;
+          else if(v.length<=7) el.value = '('+v.slice(0,2)+') '+v.slice(2);
+          else el.value = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
         }
-      } catch {
-        showError('Erro de conexão. Tente novamente.');
-      } finally {
-        btn.classList.remove('loading');
-        btn.disabled = false;
-      }
-    });
-  </script>
+        function limparBtn(inputEl, btnId) {
+          document.getElementById(btnId).classList.toggle('has-content', !!inputEl.value);
+        }
+        function limparInput(inputId) {
+          var el = document.getElementById(inputId);
+          el.value = '';
+          el.focus();
+          el.dispatchEvent(new Event('input'));
+        }
+        function toggleDisparo() {
+          var info = document.getElementById('disparo-info');
+          var icon = document.getElementById('btn-testar-icone');
+          var isOpen = info.style.display === 'flex';
+          info.style.display = isOpen ? 'none' : 'flex';
+          icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+          if (!isOpen) {
+            setTimeout(atualizarStatus, 50);
+            setTimeout(function() {
+              if (info.getBoundingClientRect().bottom > window.innerHeight) {
+                info.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }, 100);
+          } else {
+            document.querySelector('#slide-13 .slide-inner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+        function validarCampo(el, id, min) {
+          var v = document.getElementById(id).value.trim();
+          if (id === 'input-telefone') v = v.replace(/\D/g,'');
+          if (id === 'input-email') el.classList.toggle('field-ok', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+          else el.classList.toggle('field-ok', v.length >= min);
+          atualizarStatus();
+        }
+        function atualizarStatus() {
+          var n = document.getElementById('input-nome').value.trim();
+          var t = document.getElementById('input-telefone').value.replace(/\D/g,'');
+          var e = document.getElementById('input-email').value.trim();
+          if (!n) { setStatus('Preencha seu nome', 'rgba(255,255,255,0.25)'); return; }
+          if (n.length < 2) { setStatus('Nome muito curto', '#7B9AFF'); return; }
+          if (!t) { setStatus('Preencha o telefone', 'rgba(255,255,255,0.25)'); return; }
+          if (t.length < 10) { setStatus('Telefone incompleto', '#7B9AFF'); return; }
+          if (!e) { setStatus('Preencha o e-mail', 'rgba(255,255,255,0.25)'); return; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { setStatus('E-mail invalido', '#7B9AFF'); return; }
+          setStatus('Tudo certo!', '#00B5A0');
+        }
+        function setStatus(txt, color) {
+          var s = document.getElementById('test-status'); s.textContent = txt; s.style.color = color;
+          document.getElementById('test-dot').style.background = color;
+        }
+        function testSubmit(e) {
+          e.preventDefault();
+          var nome = document.getElementById('input-nome').value.trim();
+          var tel = document.getElementById('input-telefone').value.replace(/\D/g,'');
+          var email = document.getElementById('input-email').value.trim();
+          if (nome.length < 2) { setStatus('Nome invalido', '#FF4D4D'); return; }
+          if (tel.length < 10 || tel.length > 11) { setStatus('Telefone incompleto', '#FF4D4D'); return; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('E-mail invalido', '#FF4D4D'); return; }
+          var btn = document.getElementById('test-submit-btn');
+          var label = document.getElementById('test-btn-label');
+          var ico = document.getElementById('test-btn-ico');
+          var sp = document.getElementById('test-spinner');
+          btn.disabled = true; btn.style.opacity = '0.7';
+          label.textContent = 'Conectando...'; ico.style.display = 'none'; sp.style.display = 'inline-block';
+          setStatus('Chamando...', '#7B9AFF');
+          fetch('/api/submit-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome:nome, telefone:'+55'+tel, email:email, contexto:'Teste via apresentacao institucional' })
+          }).then(function(r){ return r.ok ? r.json() : r.json().then(function(e){ throw new Error(e.error || 'Erro'); }); })
+          .then(function(){
+            sp.style.display = 'none'; ico.style.display = 'inline-block'; ico.textContent = 'phone_in_talk';
+            label.textContent = 'Em Andamento'; btn.style.opacity = '1';
+            setStatus('Ligacao em andamento', '#00B5A0');
+          })
+          .catch(function(err){
+            sp.style.display = 'none'; ico.style.display = 'inline-block'; ico.textContent = 'error';
+            label.textContent = 'Erro'; btn.style.opacity = '1'; btn.disabled = false;
+            setStatus(err.message, '#FF4D4D');
+            setTimeout(function(){
+              ico.textContent = 'call'; label.textContent = 'Iniciar Ligacao';
+              atualizarStatus();
+            }, 4000);
+          });
+        }
+      </script>
+      </script>
+    </div>
+  </section>
 
-  <!-- Neural Dot Grid -->
+  <!-- SLIDE 15: CONTATO -->
+  <section class="slide" id="slide-14">
+    <div class="slide-inner">
+      <div style="max-width:720px; margin:0 auto;">
+        <div class="text-center" style="margin-bottom:24px;">
+          <p class="hero-tagline" style="font-size:11px;">Fale com um especialista da MindFlow</p>
+        </div>
+        <div class="card anim-border" style="padding:0; overflow:hidden;">
+        <div style="padding:20px 36px 0 36px;">
+          <span class="label-accent" style="font-size:13px;">Contato</span>
+        </div>
+        <div class="contact-grid">
+
+          <!-- LEFT: Profile + Contact -->
+          <div style="padding:16px 16px 16px 28px; display:flex; flex-direction:column; justify-content:center; position:relative;">
+
+            <div>
+              <!-- Avatar + Name -->
+              <div style="display:flex; align-items:center; gap:18px; margin-bottom:14px;">
+                <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, rgba(46,79,255,0.12), rgba(0,181,160,0.12)); border:2px solid rgba(46,79,255,0.2); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <svg viewBox="1255 225 485 450" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="white" transform="translate(0 -1604)" d="M1273.39 1843.81L1479.89 1843.8L1479.96 2020.86L1519.99 2021.08L1519.9 1843.92L1726.14 1843.94L1726.39 2259.94L1591.01 2259.86L1590.99 2189.94L1656.73 2190.08L1656.65 2030.85L1656.4 1913.62L1590.24 1913.46L1590.39 2090.8C1530.05 2090 1469.71 2089.78 1409.36 2090.13L1409.33 1914.44L1343.81 1914.31C1342.74 2003.67 1343.78 2099.69 1343.81 2189.58L1409.13 2189.73L1409.18 2259.87L1273.37 2259.7L1273.39 1843.81Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p style="font-family:'Space Grotesk',sans-serif; font-weight:400; font-size:11px; color:var(--muted); letter-spacing:0.06em; margin-bottom:2px;">FALE COM</p>
+                  <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; letter-spacing:-0.02em; margin-bottom:1px;">Bruna Ramos</h3>
+                  <p style="font-size:12px; color:rgba(255,255,255,0.35);">Especialista Comercial</p>
+                </div>
+              </div>
+
+              <div style="width:32px; height:2px; background:linear-gradient(90deg, var(--blue), var(--teal)); border-radius:1px; margin-bottom:10px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px;">
+                <a href="tel:+5551993770296" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; padding:7px 12px; border-radius:8px; transition:all 0.2s;" onmouseover="this.style.background='rgba(46,79,255,0.05)'" onmouseout="this.style.background=''">
+                  <span style="width:28px;height:28px;border-radius:6px;background:rgba(0,181,160,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span class="material-symbols-outlined" style="font-size:14px;color:var(--teal);">call</span>
+                  </span>
+                  <div style="flex:1; line-height:1.2;">
+                    <p style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; line-height:1.3;">Telefone</p>
+                    <p style="font-size:10px; color:var(--muted); line-height:1.2;">Ligue agora</p>
+                  </div>
+                </a>
+                <a href="#" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; padding:7px 12px; border-radius:8px; transition:all 0.2s;" onmouseover="this.style.background='rgba(0,181,160,0.05)'" onmouseout="this.style.background=''">
+                  <span style="width:28px;height:28px;border-radius:6px;background:rgba(46,79,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#7B9AFF" d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2c-5.35 0-9.702 4.35-9.706 9.698 0 1.708.446 3.38 1.296 4.854l-1.376 5.025 5.14-1.347c1.421.775 3.019 1.185 4.64 1.186h.004c5.349 0 9.703-4.352 9.706-9.7.002-2.59-1.006-5.025-2.893-6.912zM12.006 19.96c-1.458 0-2.888-.392-4.14-1.13l-.297-.176-3.05.8.813-2.97-.193-.307c-.806-1.283-1.232-2.768-1.232-4.29.004-4.447 3.62-8.064 8.074-8.064 2.156 0 4.18.84 5.703 2.364 1.522 1.524 2.36 3.55 2.357 5.7-.004 4.447-3.62 8.064-8.07 8.064h-.004zm4.426-5.986c-.242-.12-1.432-.706-1.654-.787-.222-.08-.384-.12-.545.12-.162.242-.627.787-.77.948-.142.162-.283.182-.524.06-.242-.12-1.02-.376-1.944-1.2-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.107-.494.108-.108.242-.283.364-.424.12-.141.162-.242.242-.403.08-.162.04-.303-.02-.424-.06-.121-.545-1.314-.746-1.8-.197-.476-.397-.404-.545-.412-.14-.008-.302-.01-.463-.01s-.424.06-.646.303c-.222.242-.85.83-.85 2.025s.87 2.35.992 2.512c.12.162 1.717 2.62 4.158 3.674.58.25 1.032.4 1.385.512.585.184 1.118.158 1.54.096.47-.07 1.432-.585 1.634-1.15.202-.566.202-1.05.142-1.15-.06-.102-.222-.162-.464-.283z"/></svg>
+                  </span>
+                  <div style="flex:1; line-height:1.2;">
+                    <p style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; line-height:1.3;">WhatsApp</p>
+                    <p style="font-size:10px; color:var(--muted); line-height:1.2;">Canal direto</p>
+                  </div>
+                </a>
+                <a href="mailto:contato@mindflow.com.br" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; padding:7px 12px; border-radius:8px; transition:all 0.2s;" onmouseover="this.style.background='rgba(46,79,255,0.05)'" onmouseout="this.style.background=''">
+                  <span style="width:28px;height:28px;border-radius:6px;background:rgba(46,79,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span class="material-symbols-outlined" style="font-size:14px;color:var(--blue2);">mail</span>
+                  </span>
+                  <div style="flex:1; line-height:1.2;">
+                    <p style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; line-height:1.3;">E-mail</p>
+                    <p style="font-size:10px; color:var(--muted); line-height:1.2;">Envie um email</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: QR Code -->
+          <div style="padding:16px 28px 16px 16px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative;">
+            <div style="text-align:center;">
+              <p style="font-size:10px; color:rgba(255,255,255,0.2); margin-bottom:10px; font-family:'Space Grotesk',sans-serif; letter-spacing:0.05em;">TESTE A IA DE VOZ</p>
+              <div style="width:110px; height:110px; margin:0 auto; background:rgba(255,255,255,0.03); border:1px solid var(--border-card); border-radius:12px; display:flex; align-items:center; justify-content:center; transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(46,79,255,0.3)'" onmouseout="this.style.borderColor=''">
+                <span class="material-symbols-outlined" style="font-size:42px; color:var(--muted);">qr_code_scanner</span>
+              </div>
+              <p style="font-size:10px; color:rgba(255,255,255,0.12); margin-top:8px;">Escaneie com seu celular</p>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NAVIGATION CONTROLS ─── -->
+  <div class="nav-controls">
+    <button class="nav-btn" id="prev-slide" aria-label="Slide anterior"><span class="material-symbols-outlined">keyboard_arrow_up</span></button>
+    <div class="nav-dots" id="nav-dots"></div>
+    <span class="slide-counter" id="slide-counter"></span>
+    <button class="nav-btn" id="next-slide" aria-label="Próximo slide"><span class="material-symbols-outlined">keyboard_arrow_down</span></button>
+  </div>
+
   <script>
+    // ─── NEURAL DOT GRID (production version) ───
     (function () {
       const cv = document.getElementById('neural-canvas');
       const ctx = cv.getContext('2d');
       let W, H, t = 0, dots = [], mouse = { x: -9999, y: -9999 };
       const PS = 0.75, BLUE = [46, 79, 255], TEAL = [0, 181, 160], GAP = 38;
-      function rgba(rgb, a) { return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a.toFixed(3)})` }
-      function resize() { const rW = window.innerWidth, rH = window.innerHeight; W = Math.min(rW, 2560); H = Math.min(rH, 1440); cv.width = rW * PS; cv.height = rH * PS; buildGrid(); }
-      function buildGrid() { dots = []; const cols = Math.ceil(W / GAP) + 2, rows = Math.ceil(H / GAP) + 2; for (let r = 0; r < rows; r++)for (let c = 0; c < cols; c++)dots.push({ bx: c * GAP - GAP, by: r * GAP - GAP, phase: (c * .35 + r * .55) + Math.random() * .4, colorPhase: Math.random() * Math.PI * 2 }); }
-      function waveAt(wx, wy, dx, dy) { const d = Math.sqrt(dx * dx + dy * dy); return Math.sin(d * .022 - t * .045 + wx * .01 + wy * .01) * Math.exp(-d / (Math.min(W, H) * .55)); }
-      function frame() { const rW = window.innerWidth, rH = window.innerHeight; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#04060E'; ctx.fillRect(0, 0, cv.width, cv.height); ctx.scale((rW / W) * PS, (rH / H) * PS); dots.forEach(d => { let inf = 0;[{ nx: .18, ny: .72, s: .00018, o: 0 }, { nx: .82, ny: .28, s: .00014, o: 2.1 }, { nx: .5, ny: .15, s: .0002, o: 4.2 }].forEach(wv => { const wx = (wv.nx + Math.sin(t * wv.s + wv.o) * .18) * W, wy = (.5 + Math.cos(t * wv.s + wv.o) * .22) * H; inf += waveAt(wx, wy, d.bx - wx, d.by - wy); }); inf /= 3; const x = d.bx + Math.sin(d.phase + t * .018) * 3.5 * inf * 4, y = d.by + Math.cos(d.phase + t * .014) * 3.5 * inf * 4, r = .9 + inf * 2.2; if (r <= 0) return; const mix = Math.sin(d.colorPhase + t * .008 + inf * 3) * .5 + .5, rgb = [Math.round(BLUE[0] + (TEAL[0] - BLUE[0]) * mix), Math.round(BLUE[1] + (TEAL[1] - BLUE[1]) * mix), Math.round(BLUE[2] + (TEAL[2] - BLUE[2]) * mix)], mdx = d.bx - (mouse.x * (W / rW)), mdy = d.by - (mouse.y * (H / rH)), mGlow = Math.max(0, 1 - Math.sqrt(mdx * mdx + mdy * mdy) / 140), br = .06 + Math.max(0, inf) * .55 + mGlow * .6, g = ctx.createRadialGradient(x, y, 0, x, y, r * 5); g.addColorStop(0, rgba(rgb, br * .5)); g.addColorStop(.4, rgba(rgb, br * .12)); g.addColorStop(1, rgba(rgb, 0)); ctx.beginPath(); ctx.arc(x, y, r * 5, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill(); ctx.beginPath(); ctx.arc(x, y, Math.max(.3, r), 0, Math.PI * 2); ctx.fillStyle = rgba(rgb, .18 + Math.max(0, inf) * .65 + mGlow * .8); ctx.fill(); }); t++; requestAnimationFrame(frame); }
-      resize(); window.addEventListener('resize', resize); window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }); window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; }); frame();
+      function rgba(rgb, a) { return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a.toFixed(3)})`; }
+      function resize() {
+        const rW = window.innerWidth, rH = window.innerHeight;
+        W = Math.min(rW, 2560); H = Math.min(rH, 1440);
+        cv.width = rW * PS; cv.height = rH * PS;
+        buildGrid();
+      }
+      function buildGrid() {
+        dots = [];
+        const cols = Math.ceil(W / GAP) + 2, rows = Math.ceil(H / GAP) + 2;
+        for (let r = 0; r < rows; r++)
+          for (let c = 0; c < cols; c++)
+            dots.push({ bx: c * GAP - GAP, by: r * GAP - GAP, phase: (c * .35 + r * .55) + Math.random() * .4, colorPhase: Math.random() * Math.PI * 2 });
+      }
+      function waveAt(wx, wy, dx, dy) {
+        const d = Math.sqrt(dx * dx + dy * dy);
+        return Math.sin(d * .022 - t * .045 + wx * .01 + wy * .01) * Math.exp(-d / (Math.min(W, H) * .55));
+      }
+      function frame() {
+        const rW = window.innerWidth, rH = window.innerHeight;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillStyle = '#04060E';
+        ctx.fillRect(0, 0, cv.width, cv.height);
+        ctx.scale((rW / W) * PS, (rH / H) * PS);
+        dots.forEach(d => {
+          let inf = 0;
+          [{ nx: .18, ny: .72, s: .00018, o: 0 }, { nx: .82, ny: .28, s: .00014, o: 2.1 }, { nx: .5, ny: .15, s: .0002, o: 4.2 }].forEach(wv => {
+            const wx = (wv.nx + Math.sin(t * wv.s + wv.o) * .18) * W,
+                  wy = (.5 + Math.cos(t * wv.s + wv.o) * .22) * H;
+            inf += waveAt(wx, wy, d.bx - wx, d.by - wy);
+          });
+          inf /= 3;
+          const x = d.bx + Math.sin(d.phase + t * .018) * 3.5 * inf * 4,
+                y = d.by + Math.cos(d.phase + t * .014) * 3.5 * inf * 4,
+                r = .9 + inf * 2.2;
+          if (r <= 0) return;
+          const mix = Math.sin(d.colorPhase + t * .008 + inf * 3) * .5 + .5,
+                rgb = [Math.round(BLUE[0] + (TEAL[0] - BLUE[0]) * mix),
+                       Math.round(BLUE[1] + (TEAL[1] - BLUE[1]) * mix),
+                       Math.round(BLUE[2] + (TEAL[2] - BLUE[2]) * mix)],
+                mdx = d.bx - (mouse.x * (W / rW)),
+                mdy = d.by - (mouse.y * (H / rH)),
+                mGlow = Math.max(0, 1 - Math.sqrt(mdx * mdx + mdy * mdy) / 140),
+                br = .06 + Math.max(0, inf) * .55 + mGlow * .6;
+          const g = ctx.createRadialGradient(x, y, 0, x, y, r * 5);
+          g.addColorStop(0, rgba(rgb, br * .5));
+          g.addColorStop(.4, rgba(rgb, br * .12));
+          g.addColorStop(1, rgba(rgb, 0));
+          ctx.beginPath();
+          ctx.arc(x, y, r * 5, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(.3, r), 0, Math.PI * 2);
+          ctx.fillStyle = rgba(rgb, .18 + Math.max(0, inf) * .65 + mGlow * .8);
+          ctx.fill();
+        });
+        t++;
+        requestAnimationFrame(frame);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+      window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+      frame();
+    })();
+
+    // ─── V13 LOGO ANIMATOR (vertex rotation) ───
+    (function() {
+      var VV = [
+        {t:"M",x:1273.39,y:1843.81},{t:"L",x:1479.89,y:1843.8},{t:"L",x:1479.96,y:2020.86},{t:"L",x:1519.99,y:2021.08},{t:"L",x:1519.9,y:1843.92},{t:"L",x:1726.14,y:1843.94},{t:"L",x:1726.39,y:2259.94},{t:"L",x:1591.01,y:2259.86},{t:"L",x:1590.99,y:2189.94},{t:"L",x:1656.73,y:2190.08},{t:"L",x:1656.65,y:2030.85},{t:"L",x:1656.4,y:1913.62},{t:"L",x:1590.24,y:1913.46},{t:"L",x:1590.39,y:2090.8},{t:"C",x:1409.36,y:2090.13,c1x:1530.05,c1y:2090,c2x:1469.71,c2y:2089.78},{t:"L",x:1409.33,y:1914.44},{t:"L",x:1343.81,y:1914.31},{t:"C",x:1343.81,y:2189.58,c1x:1342.74,c1y:2003.67,c2x:1343.78,c2y:2099.69},{t:"L",x:1409.13,y:2189.73},{t:"L",x:1409.18,y:2259.87},{t:"L",x:1273.37,y:2259.7}
+      ];
+      var LIDS = ['v13-aura-path','v13-flash-bloom-path','v13-mid-path','v13-edge-path','v13-charge-path','v13-fill-path','v13-exit-path','v13-flash-path','v13-glow-fwd-path','v13-glow-rev-path','v13-trace-fwd-path','v13-trace-rev-path'];
+      function genPath(si) {
+        var r = VV.slice(si).concat(VV.slice(0,si)), d = 'M '+r[0].x+' '+r[0].y+' ';
+        for (var i=1;i<r.length;i++) { var p=r[i]; if (p.t==='C') d+='C '+p.c1x+' '+p.c1y+', '+p.c2x+' '+p.c2y+', '+p.x+' '+p.y+' '; else d+='L '+p.x+' '+p.y+' '; }
+        return d+'Z';
+      }
+      function restart() {
+        LIDS.forEach(function(id) {
+          var el = document.getElementById(id); if (!el) return;
+          var cls = el.className.baseVal.trim().split(/\s+/)[0];
+          el.classList.remove(cls); void el.getBoundingClientRect(); el.classList.add(cls);
+        });
+      }
+      function cycle() {
+        var si = Math.floor(Math.random()*VV.length), np = genPath(si);
+        LIDS.forEach(function(id) { var el = document.getElementById(id); if (el) el.setAttribute('d',np); });
+        restart();
+      }
+      cycle();
+      setInterval(cycle, 8000);
+    })();
+
+    // ─── SCROLL TO FIRST SLIDE ON LOAD ───
+    window.scrollTo(0, 0);
+
+    // ─── WHEEL SNAP NAVIGATION ───
+    (function() {
+      var slides = document.querySelectorAll('.slide'), acc = 0, lastDir = 0, busy = false;
+      function closest() {
+        var best = 0, bestDist = Infinity;
+        slides.forEach(function(s, i) {
+          var r = s.getBoundingClientRect(), d = Math.abs(r.top + r.height/2 - window.innerHeight/2);
+          if (d < bestDist) { bestDist = d; best = i; }
+        });
+        return best;
+      }
+      function snapTo(idx) {
+        if (busy) return;
+        if (idx >= slides.length) idx = 0;
+        else if (idx < 0) idx = 0;
+        if (idx === closest()) return;
+        busy = true; acc = 0;
+        slides[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function() { busy = false; }, 350);
+      }
+      window.addEventListener('wheel', function(e) {
+        if (e.ctrlKey || e.metaKey) return;
+        var dir = e.deltaY > 0 ? 1 : -1;
+        if (dir !== lastDir) { acc = 0; lastDir = dir; }
+        acc += Math.abs(e.deltaY);
+        if (acc < 60) return;
+        acc = 0;
+        snapTo(closest() + dir);
+      }, { passive: true });
+    })();
+
+    // ─── DASHBOARD ANIMATION ───
+    (function() {
+      var done = false;
+      function run() {
+        if (done) return;
+        done = true;
+        var els = document.querySelectorAll('#slide-7 [data-target]');
+        for (var i = 0; i < els.length; i++) els[i].textContent = parseInt(els[i].getAttribute('data-target'));
+        var bars = document.querySelectorAll('#slide-7 [data-width]');
+        for (var j = 0; j < bars.length; j++) bars[j].style.width = bars[j].getAttribute('data-width') + '%';
+      }
+      window.addEventListener('scroll', function() { if (!done) { var e = document.getElementById('slide-7'); if (e) { var r = e.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) run(); } } }, { passive: true });
+      setTimeout(function() { if (!done) { var e = document.getElementById('slide-7'); if (e) { var r = e.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) run(); } } }, 1500);
+    })();
+
+    // ─── SLIDE NAVIGATION ───
+    (function() {
+      const slides = document.querySelectorAll('.slide');
+      const dotsContainer = document.getElementById('nav-dots');
+      const counter = document.getElementById('slide-counter');
+      const prevBtn = document.getElementById('prev-slide');
+      const nextBtn = document.getElementById('next-slide');
+      let current = 0;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'nav-dot';
+        dot.setAttribute('aria-label', `Slide ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(idx) {
+        if (idx >= slides.length) idx = 0;
+        else if (idx < 0) idx = 0;
+        current = idx;
+        slides[current].scrollIntoView({ behavior: 'smooth' });
+        if (current === 6) setTimeout(function() {
+          var els = document.querySelectorAll('#slide-7 [data-target]');
+          for (var i = 0; i < els.length; i++) els[i].textContent = parseInt(els[i].getAttribute('data-target'));
+          var bars = document.querySelectorAll('#slide-7 [data-width]');
+          for (var j = 0; j < bars.length; j++) bars[j].style.width = bars[j].getAttribute('data-width') + '%';
+        }, 400);
+        updateUI();
+      }
+
+      function updateUI() {
+        const dots = dotsContainer.querySelectorAll('.nav-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        counter.textContent = `${String(current + 1).padStart(2, '0')}/${String(slides.length).padStart(2, '0')}`;
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+      document.addEventListener('keydown', e => {
+        const tag = e.target.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+        if (e.key === ' ' || e.key === 'Space') { e.preventDefault(); goTo(current + 1); }
+      });
+
+      let ticking = false;
+      document.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            slides.forEach((slide, i) => {
+              const rect = slide.getBoundingClientRect();
+              if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                if (current !== i) { current = i; updateUI(); }
+              }
+            });
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      updateUI();
     })();
   </script>
-
-  <!-- V13 Logo Ignition Cycle -->
-  <script>
-    const V13_VERTICES = [
-      { type: 'M', x: 1273.39, y: 1843.81 }, { type: 'L', x: 1479.89, y: 1843.8 }, { type: 'L', x: 1479.96, y: 2020.86 },
-      { type: 'L', x: 1519.99, y: 2021.08 }, { type: 'L', x: 1519.9, y: 1843.92 }, { type: 'L', x: 1726.14, y: 1843.94 },
-      { type: 'L', x: 1726.39, y: 2259.94 }, { type: 'L', x: 1591.01, y: 2259.86 }, { type: 'L', x: 1590.99, y: 2189.94 },
-      { type: 'L', x: 1656.73, y: 2190.08 }, { type: 'L', x: 1656.65, y: 2030.85 }, { type: 'L', x: 1656.4, y: 1913.62 },
-      { type: 'L', x: 1590.24, y: 1913.46 }, { type: 'L', x: 1590.39, y: 2090.8 },
-      { type: 'C', x: 1409.36, y: 2090.13, c1x: 1530.05, c1y: 2090, c2x: 1469.71, c2y: 2089.78 },
-      { type: 'L', x: 1409.33, y: 1914.44 }, { type: 'L', x: 1343.81, y: 1914.31 },
-      { type: 'C', x: 1343.81, y: 2189.58, c1x: 1342.74, c1y: 2003.67, c2x: 1343.78, c2y: 2099.69 },
-      { type: 'L', x: 1409.13, y: 2189.73 }, { type: 'L', x: 1409.18, y: 2259.87 }, { type: 'L', x: 1273.37, y: 2259.7 }
-    ];
-    const V13_IDS = ['v13-aura-path', 'v13-flash-bloom-path', 'v13-mid-path', 'v13-edge-path', 'v13-charge-path', 'v13-fill-path', 'v13-exit-path', 'v13-flash-path', 'v13-glow-fwd-path', 'v13-glow-rev-path', 'v13-trace-fwd-path', 'v13-trace-rev-path'];
-    function genPath(si) { const rot = [...V13_VERTICES.slice(si), ...V13_VERTICES.slice(0, si)]; let d = `M ${rot[0].x} ${rot[0].y} `; for (let i = 1; i < rot.length; i++) { const p = rot[i]; d += p.type === 'C' ? `C ${p.c1x} ${p.c1y}, ${p.c2x} ${p.c2y}, ${p.x} ${p.y} ` : `L ${p.x} ${p.y} `; } return d + 'Z'; }
-    function v13Cycle() { const si = Math.floor(Math.random() * V13_VERTICES.length), np = genPath(si); V13_IDS.forEach(id => { const el = document.getElementById(id); if (!el) return; el.setAttribute('d', np); const cls = el.className.baseVal.trim().split(/\s+/)[0]; el.classList.remove(cls); void el.getBoundingClientRect(); el.classList.add(cls); }); }
-    v13Cycle(); setInterval(v13Cycle, 8000);
-  </script>
 </body>
-
 </html>
