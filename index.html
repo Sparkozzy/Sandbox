@@ -621,6 +621,14 @@
       /* Toque limpo, sem o retângulo cinza padrão (feel Apple) */
       * { -webkit-tap-highlight-color: transparent; }
 
+      /* Scroll liso: corta os repaints mais caros do celular */
+      html { overflow-x: hidden; }
+      .card { animation: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      .navbar { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(4, 6, 14, 0.92); }
+
+      /* Card de contato centrado com o mesmo espaço dos dois lados */
+      #slide-14 .slide-inner > div { margin-left: auto !important; margin-right: auto !important; }
+
       /* Tipografia confortável, sem estourar a largura da tela */
       .display    { font-size: clamp(33px, 9vw, 44px); line-height: 1.08; text-wrap: balance; }
       .heading-xl { font-size: clamp(26px, 7vw, 34px); line-height: 1.14; text-wrap: balance; }
@@ -1372,13 +1380,16 @@
       const cv = document.getElementById('neural-canvas');
       const ctx = cv.getContext('2d');
       let W, H, t = 0, dots = [], mouse = { x: -9999, y: -9999 };
-      const PS = 0.75, BLUE = [46, 79, 255], TEAL = [0, 181, 160], GAP = 38;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
+      const PS = isMobile ? 0.5 : 0.75, BLUE = [46, 79, 255], TEAL = [0, 181, 160], GAP = 38;
       function rgba(rgb, a) { return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${a.toFixed(3)})`; }
+      let lastW = -1;
       function resize() {
         const rW = window.innerWidth, rH = window.innerHeight;
         W = Math.min(rW, 2560); H = Math.min(rH, 1440);
         cv.width = rW * PS; cv.height = rH * PS;
-        buildGrid();
+        // Mobile: ao rolar, a barra do navegador muda só a ALTURA — não reconstrói a grade à toa
+        if (rW !== lastW || !dots.length) { lastW = rW; buildGrid(); }
       }
       function buildGrid() {
         dots = [];
@@ -1431,13 +1442,28 @@
           ctx.fill();
         });
         t++;
-        requestAnimationFrame(frame);
       }
       resize();
-      window.addEventListener('resize', resize);
+      let rT;
+      window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(resize, 200); });
       window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
       window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-      frame();
+
+      // Mobile: pausa o desenho durante o scroll e limita a ~30fps -> scroll liso
+      let scrolling = false, sT;
+      if (isMobile) window.addEventListener('scroll', () => {
+        scrolling = true; clearTimeout(sT);
+        sT = setTimeout(() => { scrolling = false; }, 140);
+      }, { passive: true });
+      const minDelta = isMobile ? 1000 / 30 : 0;
+      let lastFrame = -1e9;
+      (function loop(now) {
+        requestAnimationFrame(loop);
+        if (isMobile && scrolling) return;
+        if (now - lastFrame < minDelta) return;
+        lastFrame = now;
+        frame();
+      })(0);
     })();
 
     // ─── V13 LOGO ANIMATOR (vertex rotation) ───
