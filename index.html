@@ -1236,11 +1236,18 @@
           icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
           if (!isOpen) {
             setTimeout(atualizarStatus, 50);
-            setTimeout(function() {
+            // Centraliza o form ao abrir. Mede só depois que o layout do form recém-exibido
+            // estabiliza (2x rAF) + fallback, para funcionar já no 1º open após o refresh.
+            var centered = false;
+            var centerForm = function () {
+              if (centered) return;
               if (info.getBoundingClientRect().bottom > window.innerHeight) {
+                centered = true;
                 info.scrollIntoView({ behavior: 'smooth', block: 'center' });
               }
-            }, 100);
+            };
+            requestAnimationFrame(function () { requestAnimationFrame(centerForm); });
+            setTimeout(centerForm, 300);
           } else {
             document.querySelector('#slide-13 .slide-inner').scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
