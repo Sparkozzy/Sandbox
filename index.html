@@ -600,6 +600,9 @@
       .indicators-grid { grid-template-columns: 1fr; }
       .dash-grid { grid-template-columns: repeat(2, 1fr); }
       .cases-grid { grid-template-columns: 1fr; }
+      /* Grids INLINE (sem classe) também empilham: título+número e os 3 cards do slide do problema */
+      .slide-inner [style*="1.1fr 0.9fr"],
+      .slide-inner [style*="repeat(3, 1fr)"] { grid-template-columns: 1fr !important; gap: 28px !important; }
       .timeline { flex-direction: column; gap: 24px; }
       .timeline::before { display: none; }
       .tl-step { padding-top: 0; }
@@ -624,16 +627,9 @@
       .heading-lg { font-size: clamp(21px, 5.4vw, 26px); text-wrap: balance; }
       .problem-hero-number .big-number { font-size: clamp(46px, 13vw, 64px); }
 
-      /* Títulos quebram naturalmente (neutraliza as quebras forçadas <br>) */
-      .slide-inner h1 br,
-      .slide-inner h2 br,
-      .slide-inner h3 br,
-      .display br,
-      .heading-xl br,
-      .heading-lg br { display: none; }
-
-      /* Respiro vertical proporcional, com folga para a navegação fixa */
-      .slide { padding: 70px 18px 104px; }
+      /* Cada slide preenche exatamente a tela visível — resolve o "vazamento"
+         do próximo slide causado pelo 100vh + barra do navegador no celular */
+      .slide { min-height: 100dvh; padding: 70px 18px 104px; }
 
       /* Hero mais compacto no celular */
       .hero-logo-wrap { margin-bottom: 26px; }
