@@ -623,7 +623,9 @@
 
       /* Scroll liso: corta os repaints mais caros do celular */
       html { overflow-x: hidden; }
-      .card { animation: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      .card { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      /* a borda com gradiente anima normalmente; só pausa durante o scroll (scroll liso) */
+      body.is-scrolling .card { animation-play-state: paused !important; }
       .navbar { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(4, 6, 14, 0.92); }
 
       /* Card de contato centrado com o mesmo espaço dos dois lados */
@@ -1474,8 +1476,8 @@
       // Mobile: pausa o desenho durante o scroll e limita a ~30fps -> scroll liso
       let scrolling = false, sT;
       if (isMobile) window.addEventListener('scroll', () => {
-        scrolling = true; clearTimeout(sT);
-        sT = setTimeout(() => { scrolling = false; }, 140);
+        scrolling = true; document.body.classList.add('is-scrolling'); clearTimeout(sT);
+        sT = setTimeout(() => { scrolling = false; document.body.classList.remove('is-scrolling'); }, 140);
       }, { passive: true });
       const minDelta = isMobile ? 1000 / 30 : 0;
       let lastFrame = -1e9;
