@@ -613,6 +613,49 @@
       .sector-pill { padding: 10px 20px; font-size: 13px; }
     }
 
+    /* ── POLIMENTO MOBILE (somente telas pequenas — desktop intacto) ── */
+    @media (max-width: 640px) {
+      /* Toque limpo, sem o retângulo cinza padrão (feel Apple) */
+      * { -webkit-tap-highlight-color: transparent; }
+
+      /* Tipografia confortável, sem estourar a largura da tela */
+      .display    { font-size: clamp(33px, 9vw, 44px); line-height: 1.08; text-wrap: balance; }
+      .heading-xl { font-size: clamp(26px, 7vw, 34px); line-height: 1.14; text-wrap: balance; }
+      .heading-lg { font-size: clamp(21px, 5.4vw, 26px); text-wrap: balance; }
+      .problem-hero-number .big-number { font-size: clamp(46px, 13vw, 64px); }
+
+      /* Títulos quebram naturalmente (neutraliza as quebras forçadas <br>) */
+      .slide-inner h1 br,
+      .slide-inner h2 br,
+      .slide-inner h3 br,
+      .display br,
+      .heading-xl br,
+      .heading-lg br { display: none; }
+
+      /* Respiro vertical proporcional, com folga para a navegação fixa */
+      .slide { padding: 70px 18px 104px; }
+
+      /* Hero mais compacto no celular */
+      .hero-logo-wrap { margin-bottom: 26px; }
+      .hero-logo-wrap svg { max-width: 150px; height: auto; }
+      .hero-cta { gap: 12px; margin-top: 28px; }
+      .hero-sub { margin-top: 16px; }
+
+      /* Navegação fixa um pouco mais acima */
+      .nav-controls { bottom: 18px; gap: 12px; }
+
+      /* Card de contato equilibrado quando empilha em coluna única */
+      .contact-grid > div { padding-left: 24px !important; padding-right: 24px !important; }
+    }
+
+    @media (max-width: 400px) {
+      .display    { font-size: 31px; }
+      .heading-xl { font-size: 24px; }
+      .heading-lg { font-size: 20px; }
+      .slide { padding: 62px 15px 100px; }
+      .hero-tagline { letter-spacing: 0.12em; font-size: 12px; }
+    }
+
     /* ── PRINT / PDF ── */
     @media print {
       *, *::before, *::after {
@@ -1299,7 +1342,7 @@
 
           <!-- RIGHT: QR Code -->
           <div style="padding:24px 42px 24px 22px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative;">
-            <div style="text-align:center;">
+            <div style="text-align:center; transform:translateY(-14px);">
               <p style="font-size:13px; color:rgba(255,255,255,0.2); margin-bottom:16px; font-family:'Space Grotesk',sans-serif; letter-spacing:0.05em;">TESTE A IA DE VOZ</p>
               <a href="https://front-form-form-leads.bkpxmb.easypanel.host" target="_blank" rel="noopener" aria-label="Abrir demonstração da IA de voz" style="display:block; width:200px; height:200px; margin:0 auto; background:#fff; border:1px solid var(--border-card); border-radius:16px; padding:13px; transition:border-color 0.3s, transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.borderColor='rgba(46,79,255,0.3)';this.style.transform='scale(1.03)';this.style.boxShadow='0 0 24px rgba(46,79,255,0.25)'" onmouseout="this.style.borderColor='';this.style.transform='';this.style.boxShadow=''">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" shape-rendering="crispEdges" style="width:100%; height:100%; display:block;"><path fill="#ffffff" d="M0 0h37v37H0z"/><path stroke="#04060E" d="M2 2.5h7m1 0h3m8 0h3m1 0h2m1 0h7M2 3.5h1m5 0h1m1 0h1m1 0h2m2 0h1m1 0h2m4 0h2m2 0h1m5 0h1M2 4.5h1m1 0h3m1 0h1m5 0h5m1 0h1m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1M2 5.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1M2 6.5h1m1 0h3m1 0h1m3 0h4m2 0h3m2 0h1m2 0h1m1 0h1m1 0h3m1 0h1M2 7.5h1m5 0h1m2 0h2m3 0h4m8 0h1m5 0h1M2 8.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 9.5h2m4 0h4m1 0h1m2 0h1m1 0h1M2 10.5h1m1 0h2m1 0h3m4 0h1m1 0h2m1 0h2m2 0h1m1 0h2m1 0h1m2 0h1m1 0h2M3 11.5h1m1 0h3m5 0h1m1 0h1m2 0h5m2 0h1m2 0h2m1 0h4M3 12.5h2m2 0h3m2 0h1m1 0h2m4 0h1m1 0h1m1 0h2m2 0h4m1 0h2M2 13.5h1m4 0h1m1 0h2m2 0h1m5 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1M4 14.5h5m3 0h1m3 0h3m6 0h3m1 0h3M6 15.5h1m2 0h2m5 0h1m5 0h1m3 0h2m1 0h1m1 0h3M3 16.5h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m2 0h1m1 0h3M2 17.5h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h3m4 0h2m2 0h3m2 0h2M2 18.5h1m2 0h5m1 0h2m2 0h1m6 0h4m1 0h2m1 0h3M3 19.5h1m1 0h1m1 0h1m1 0h1m1 0h5m1 0h1m4 0h7m1 0h2m2 0h1M3 20.5h4m1 0h2m2 0h1m2 0h4m1 0h1m1 0h1m1 0h1m4 0h2m1 0h2M3 21.5h1m2 0h1m2 0h8m2 0h2m5 0h2m2 0h1m2 0h1M2 22.5h1m4 0h3m1 0h1m1 0h1m4 0h1m3 0h2m1 0h1m5 0h4M2 23.5h2m2 0h2m1 0h2m6 0h3m1 0h2m2 0h1m1 0h2m2 0h1m2 0h1M4 24.5h1m3 0h2m1 0h5m1 0h1m1 0h2m2 0h3m1 0h2m1 0h1m2 0h2M3 25.5h2m1 0h2m1 0h2m1 0h1m2 0h3m2 0h1m6 0h3m1 0h1m2 0h1M2 26.5h1m1 0h11m4 0h1m4 0h1m1 0h5M10 27.5h4m3 0h2m2 0h6m3 0h2M2 28.5h7m1 0h3m1 0h2m3 0h4m1 0h3m1 0h1m1 0h1M2 29.5h1m5 0h1m1 0h1m2 0h2m1 0h5m1 0h2m1 0h2m3 0h3m1 0h1M2 30.5h1m1 0h3m1 0h1m2 0h3m1 0h2m1 0h4m1 0h8m1 0h1m1 0h1M2 31.5h1m1 0h3m1 0h1m1 0h1m3 0h2m2 0h2m2 0h1m1 0h1m1 0h1m2 0h1m4 0h1M2 32.5h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h3m3 0h1m3 0h4M2 33.5h1m5 0h1m2 0h1m4 0h1m2 0h1m1 0h1m4 0h1m2 0h3m2 0h1M2 34.5h7m1 0h2m2 0h2m2 0h3m2 0h1m1 0h1m4 0h1m1 0h1"/></svg>
