@@ -1149,9 +1149,9 @@
       <span class="label-accent mb-16" style="display:block;">Perguntas Frequentes</span>
       <h2 class="heading-xl mb-16">Você já pensou nisso.<br><span class="display-em">A gente também.</span></h2>
       <div class="faq-list">
-        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>A IA soa robótica?</div><div class="faq-a-wrap"><div class="faq-a">Construímos o Kaique para soar natural. Menos de 5% dos leads percebem ser IA. A entonação, os regionismos e as pausas naturais fazem a diferença.</div></div></div>
-        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>E a LGPD?</div><div class="faq-a-wrap"><div class="faq-a">Consentimento explícito e criptografia total. Somos compliance-first. LGPD por design desde o início da operação.</div></div></div>
-        <div class="faq-item" onclick="var w=this.querySelector('.faq-a-wrap');if(!this._h)this._h=w.scrollHeight;this.classList.toggle('open');w.style.maxHeight=this.classList.contains('open')?this._h+'px':'0'"><div class="faq-q"><span class="material-symbols-outlined">add</span>Funciona com meu CRM?</div><div class="faq-a-wrap"><div class="faq-a">Integramos via API com HubSpot, Pipedrive, Salesforce e outros. Leads chegam classificados e prontos para ação.</div></div></div>
+        <div class="faq-item" onclick="faqToggle(this)"><div class="faq-q"><span class="material-symbols-outlined">add</span>A IA soa robótica?</div><div class="faq-a-wrap"><div class="faq-a">Construímos o Kaique para soar natural. Menos de 5% dos leads percebem ser IA. A entonação, os regionismos e as pausas naturais fazem a diferença.</div></div></div>
+        <div class="faq-item" onclick="faqToggle(this)"><div class="faq-q"><span class="material-symbols-outlined">add</span>E a LGPD?</div><div class="faq-a-wrap"><div class="faq-a">Consentimento explícito e criptografia total. Somos compliance-first. LGPD por design desde o início da operação.</div></div></div>
+        <div class="faq-item" onclick="faqToggle(this)"><div class="faq-q"><span class="material-symbols-outlined">add</span>Funciona com meu CRM?</div><div class="faq-a-wrap"><div class="faq-a">Integramos via API com HubSpot, Pipedrive, Salesforce e outros. Leads chegam classificados e prontos para ação.</div></div></div>
       </div>
     </div>
   </section>
@@ -1663,6 +1663,31 @@
 
       updateUI();
     })();
+  </script>
+
+  <!-- FAQ accordion: no mobile fecha os outros e centraliza o item aberto; desktop inalterado -->
+  <script>
+    function faqToggle(el) {
+      var wrap = el.querySelector('.faq-a-wrap');
+      var willOpen = !el.classList.contains('open');
+      var mobile = window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
+      if (willOpen && mobile) {
+        // só um aberto por vez no celular
+        document.querySelectorAll('.faq-item.open').forEach(function (o) {
+          if (o !== el) {
+            o.classList.remove('open');
+            var w = o.querySelector('.faq-a-wrap');
+            if (w) w.style.maxHeight = '0';
+          }
+        });
+      }
+      el.classList.toggle('open', willOpen);
+      wrap.style.maxHeight = willOpen ? wrap.scrollHeight + 'px' : '0';
+      if (willOpen && mobile) {
+        // acompanha e centraliza o item clicado após a animação de abertura
+        setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 380);
+      }
+    }
   </script>
 </body>
 </html>
