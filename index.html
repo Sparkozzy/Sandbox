@@ -1608,8 +1608,35 @@
         counter.textContent = `${String(current + 1).padStart(2, '0')}/${String(slides.length).padStart(2, '0')}`;
       }
 
-      prevBtn.addEventListener('click', () => goTo(current - 1));
-      nextBtn.addEventListener('click', () => goTo(current + 1));
+      // No mobile: se o slide atual tem conteúdo além da tela, o botão primeiro
+      // rola para revelar o que falta; só passa de slide ao chegar na borda.
+      const isMobileNav = () => window.matchMedia('(max-width: 768px)').matches || window.matchMedia('(pointer: coarse)').matches;
+      const EDGE = 4;
+
+      function stepDown() {
+        if (isMobileNav()) {
+          const r = slides[current].getBoundingClientRect(), vh = window.innerHeight;
+          if (r.bottom > vh + EDGE) {                       // ainda há conteúdo abaixo
+            window.scrollBy({ top: Math.min(vh * 0.85, r.bottom - vh), behavior: 'smooth' });
+            return;
+          }
+        }
+        goTo(current + 1);
+      }
+
+      function stepUp() {
+        if (isMobileNav()) {
+          const r = slides[current].getBoundingClientRect();
+          if (r.top < -EDGE) {                              // ainda há conteúdo acima
+            window.scrollBy({ top: -Math.min(window.innerHeight * 0.85, -r.top), behavior: 'smooth' });
+            return;
+          }
+        }
+        goTo(current - 1);
+      }
+
+      prevBtn.addEventListener('click', stepUp);
+      nextBtn.addEventListener('click', stepDown);
       document.addEventListener('keydown', e => {
         const tag = e.target.tagName;
         if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
