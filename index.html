@@ -109,8 +109,9 @@
 
     /* ── GLASS CARD ── */
     .card {
-      background: linear-gradient(rgba(8, 12, 24, 0.72), rgba(8, 12, 24, 0.72)) padding-box,
-                  conic-gradient(from var(--ba), #2E4FFF 0%, #00B5A0 25%, #2E4FFF 50%, #00B5A0 75%, transparent 87.5%, #2E4FFF 100%) border-box;
+      background: linear-gradient(rgba(8, 12, 24, 0.82), rgba(8, 12, 24, 0.82)) padding-box,
+                  repeating-linear-gradient(115deg, #2E4FFF 0px, #00B5A0 90px, #7B9AFF 180px, #00B5A0 270px, #2E4FFF 360px) border-box;
+      background-position: 0 0, 0 0;
       border: 1px solid transparent;
       backdrop-filter: blur(12px);
       border-radius: 16px;
@@ -122,14 +123,14 @@
       0% { opacity: 0; transform: translateY(24px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    @keyframes spin-border {
-      to { --ba: 360deg; }
+    @keyframes sweep {
+      to { background-position: 0 0, 360px 0; }
     }
     @keyframes s-spin {
       to { transform: rotate(360deg); }
     }
     .card.anim-border {
-      animation: cardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both, spin-border 9s linear infinite;
+      animation: cardIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both, sweep 6s linear infinite;
     }
 
     /* ── TYPOGRAPHY ── */
